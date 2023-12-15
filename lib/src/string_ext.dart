@@ -19,7 +19,7 @@ extension StringExtension on String {
     return substring(0, 1).toUpperCase() + substring(1);
   }
 
-  /// Mocks a string that needs to be translated
+  /// Mocks a string that needs to be translated or changed
   String get mock => '$this 🧨';
 
   /// Indicates if the string is a boolean
@@ -63,31 +63,31 @@ extension StringExtension on String {
   /// print('0xFF'.isNum()); // true
   /// print(double.infinity.toString().isNum()); // true
   /// print('1f'.isNum()); // false
-  bool isNum() => num.tryParse(this) != null;
+  bool get isNum => num.tryParse(this) != null;
 
   /// Converts the string into a [num]
   ///
   /// Throws if the string is not a number.
-  num toNum() => num.parse(this);
+  num get toNum => num.parse(this);
 
   /// Indicates if the string is a double number
-  bool isDouble() => double.tryParse(this) != null;
+  bool get isDouble => double.tryParse(this) != null;
 
   /// Converts the string into an [double]
   ///
   /// Throws if the string is not an Double number.
-  double toDouble() => double.parse(this);
+  double get toDouble => double.parse(this);
 
   /// Indicates if the string is an integer number
-  bool isInt() => int.tryParse(this) != null;
+  bool get isInt => int.tryParse(this) != null;
 
   /// Converts the string into an [int]
   ///
   /// Throws if the string is not an Integer.
-  int toInt() => int.parse(this);
+  int get toInt => int.parse(this);
 
   /// Removes all the whitespace from the string
-  String removeAllWhitespace() => replaceAll(' ', '');
+  String get removeAllWhitespace => replaceAll(' ', '');
 
   /// Checks whether this regular expression has a match in the [pattern].
   bool hasMatch(String pattern) => RegExp(pattern).hasMatch(this);
