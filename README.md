@@ -1,5 +1,5 @@
 <img src="https://raw.githubusercontent.com/zainulabidin379/extensions_kit/main/assets/images/header.png" alt="Logo" width="100%">
-<p align="center">A powerful yet lightweight library of dart extensions to remove the boilerplate and speed up the development process.</p>
+<p align="center">An essential and powerful library of dart extensions to remove the boilerplate and speed up the development process.</p>
 <br>
 
 ## Installation
@@ -25,6 +25,7 @@ Available Extensions & Methods 🔥
   - [Media Query Extensions](#media-query-extensions)
   - [Theme Extensions](#theme-extensions)
   - [Date Extensions](#date-extensions)
+  - [Navigation Extensions](#navigation-extensions)
   - [Number Extensions](#number-extensions)
   - [Widget Extensions](#widget-extensions)
   - [Padding Extensions](#padding-extensions)
@@ -155,7 +156,7 @@ DateTime(2018, 9, 30).firstDayOfMonth; // returns DateTime(2018, 9, 1)
 // Last day of the month
 DateTime(2017, 3).lastDayOfMonth; // DateTime(2017, 3, 31)
 
-// All days in a month, [DateTime] array
+// All days in a month, [DateTime] Array
 DateTime(2017, 3).daysInMonth; // [DateTime(2017, 3, 1), DateTime(2017, 3, 2), ...]
 
 // Whether or not two times are on the same day.
@@ -166,3 +167,140 @@ DateTime(2017, 3, 5).isSameWeek(DateTime(2017, 3, 6));
 
 ```
 
+## Navigation Extensions
+From the `Navigator` Access properties right in the `context` instance.
+
+```dart
+// Before
+Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => SecondScreen()),
+  );
+
+// After
+
+// for push
+context.push(SecondScreen());
+context.pushNamed('/home');
+
+// For back, you can also add back result data
+context.pop();
+
+// for push replacement
+context.pushReplacement(SecondScreen());
+context.pushReplacementNamed('/home');
+
+// popUntil
+context.popUntil('/login');
+
+// with rootNavigator
+context.push(SecondScreen(), rootNavigator: true);
+context.pushReplacement(SecondScreen(), rootNavigator: true);
+context.popUntil('/login', rootNavigator: true);
+```
+
+
+## Widget Extensions
+These widget extensions will help you to reduce boilerplate code and increase your productivity
+
+#### SizeBox
+```dart
+// Before
+SizedBox(
+    height : 20
+   )
+
+// After
+// makes space of 20 height
+20.heightBox; 
+
+// for width
+20.widthBox
+```
+
+#### Padding
+
+```dart
+// Before
+Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: Text("text"),
+);
+
+// After
+Text("text").padAll(8.0),
+```
+
+Similar available padding extensions are:
+* `padAll` Creates insets from offsets from all sides.
+* `padHrz` Creates insets from offsets from horizontal sides.
+* `padVert` Creates insets from offsets from vertical sides.
+* `padTop` Creates insets from offsets from the top side.
+* `padBottom` Creates insets from offsets from the bottom side.
+* `padLeft` Creates insets from offsets from the left side.
+* `padRight` Creates insets from offsets from the right side.
+
+#### Alignment
+
+```dart
+// Before
+Align(
+  alignment: Alignment.centerLeft,
+  child: Text("text"),
+);
+
+// After
+Text("text").leftAlign,
+```
+
+Similar available Alignment extensions are:
+* `center` Aligns the widget to the center.
+* `leftAlign` Aligns the widget to the center left.
+* `rightAlign` Aligns the widget to the center right.
+* `topAlign` Aligns the widget to the top center.
+* `topLeftAlign` Aligns the widget to the top left.
+* `topRightAlign` Aligns the widget to the top right.
+* `bottomAlign` Aligns the widget to the bottom center.
+* `bottomLeftAlign` Aligns the widget to the bottom left.
+* `bottomRightAlign` Aligns the widget to the bottom right.
+
+
+### Flexible
+
+```dart
+/// Before
+Flexible(
+  child: Text("text"),
+)
+
+// After
+Text("text").flexible
+```
+
+Similar available widget extensions are:
+* `unfocus` Will [Unfocus] focused text field, It's better to use it on the main parent widget of the screen e.g. [Scaffold]
+* `flexible()` Will wrap the widget with a Flexible widget
+* `expanded()` Will wrap the widget with an Expanded widget
+* `withOpacity()` Will wrap the widget with an Opacity widget
+* `onDoubleTap()` Will wrap the widget with a GestureDetector and accept an onDoubleTap function
+* `onTap()` Will wrap the widget with a GestureDetector and accept an onTap function
+* `onLongPress()` Will wrap the widget with a GestureDetector and accept an onLongPress function
+* `positionTop()` Will wrap the widget with a Positioned widget and accept top position
+* `positionBottom()` Will wrap the widget with a Positioned widget and accept bottom position
+* `positionTB()` Will wrap the widget with a Positioned widget and accept top & bottom position
+* `positionLT()` Will wrap the widget with a Positioned widget and accept left & right position
+* `positionLRTB()` Will wrap the widget with a Positioned widget and accept left,right,top & bottom position
+* `tooltip()` Will wrap the widget with a Tooltip widget
+* `sizedBox(width,height)` Will wrap the widget with a SizedBox of given height and width
+* `heightBox(height)` Will wrap the widget with a SizedBox of a given height
+* `widthBox(height)` Will wrap the widget with a SizedBox of a given width
+
+
+#### Shimmer Effect
+![OYCE3](https://user-images.githubusercontent.com/31765271/177955655-66a856a6-108a-429f-bbad-64b1c3f114aa.gif)
+```dart
+Container(height: 50,width: 50,).applyShimmer();
+```
+You can also change the color of the shimmer using `baseColor` & `highlightColor`.
+
+  
