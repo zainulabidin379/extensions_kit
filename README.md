@@ -1,5 +1,5 @@
 <img src="https://raw.githubusercontent.com/zainulabidin379/extensions_kit/main/assets/images/header.png" alt="Logo" width="100%">
-<p align="center">A powerful yet lightweight library of dart extensions to remove the boilerplate and speed up the development process</p>
+<p align="center">A powerful yet lightweight library of dart extensions to remove the boilerplate and speed up the development process.</p>
 <br>
 
 ## Installation
@@ -19,10 +19,11 @@ import 'package:extensions_kit/extensions_kit.dart';
 ```
 
 
-Available Extensions & Methods💪
+Available Extensions & Methods 🔥
 
   - [String Extensions](#string-extensions)
-  - [Context Extensions](#context-extensions)
+  - [Media Query Extensions](#media-query-extensions)
+  - [Theme Extensions](#theme-extensions)
   - [Date Extensions](#date-extensions)
   - [Number Extensions](#number-extensions)
   - [Widget Extensions](#widget-extensions)
@@ -88,3 +89,80 @@ Available Extensions & Methods💪
 // Check if the String matches the Regular expression
 "username_10".hasMatch("r'[abcdefghijklmnopqrstuvwxyz1234567890._]"); // true
 ```
+
+## Media Query Extensions
+From the `MediaQuery` Access properties right in the `context` instance.
+
+```dart
+
+// Before
+ Container(
+     width: MediaQuery.of(context).size.width,
+     height: MediaQuery.of(context).size.height,
+        ),
+
+// After
+Container(
+     width: context.w(), // 100% of screen width
+     height: context.h(), // 100% of screen height
+        ),
+Container(
+     width: context.w(w: 50), // 50% of screen width
+     height: context.h(h: 40.5), // 40.5% of screen height
+        ),
+```
+
+## Theme Extensions
+
+```dart
+
+// Returns boolean 
+context.isDarkMode; // true/false
+context.isLightMode; // true/false
+
+```
+
+## Date Extensions
+
+```dart
+// Get Date only
+DateTime(2023,12,16,11,40,00,0,0).dateOnly; // DateTime(2023,12,16) *time set to midnight
+
+// Check if [DateTime] is on the same day as today
+DateTime.now().isToday; // true
+
+// Check if [DateTime] was on the same day as yesterday
+DateTime.now().isYesterday; // false
+
+// Check if [DateTime] will be on the same day as tomorrow
+DateTime.now().isTomorrow; // false
+
+// Add a certain number of DAYS to [DateTime] 
+DateTime(2023,12,16).addDays(5); // DateTime(2023,12,21)
+
+// Add a certain number of HOURS to [DateTime]
+DateTime(2023,12,16,11,50,0).addHours(10); // DateTime(2023,12,16,21,50,0)
+
+/// The day after this [DateTime]
+DateTime(2017, 3, 5).nextDay; // return DateTime(2017, 3, 6)
+
+/// The day previous this [DateTime]
+DateTime(2017, 3, 5).previousDay; // return DateTime(2017, 3, 4)
+
+// First day of the month
+DateTime(2018, 9, 30).firstDayOfMonth; // returns DateTime(2018, 9, 1)
+
+// Last day of the month
+DateTime(2017, 3).lastDayOfMonth; // DateTime(2017, 3, 31)
+
+// All days in a month, [DateTime] array
+DateTime(2017, 3).daysInMonth; // [DateTime(2017, 3, 1), DateTime(2017, 3, 2), ...]
+
+// Whether or not two times are on the same day.
+DateTime.now().isSameDay(DateTime.now()); // returns true
+
+// Whether or not two times are on the same week.
+DateTime(2017, 3, 5).isSameWeek(DateTime(2017, 3, 6));
+
+```
+
