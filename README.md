@@ -102,7 +102,7 @@ From the `MediaQuery` Access properties right in the `context` instance.
      height: MediaQuery.of(context).size.height,
         ),
 
-// After
+// Now
 Container(
      width: context.w(), // 100% of screen width
      height: context.h(), // 100% of screen height
@@ -144,7 +144,7 @@ DateTime(2023,12,16).addDays(5); // DateTime(2023,12,21)
 // Add a certain number of HOURS to [DateTime]
 DateTime(2023,12,16,11,50,0).addHours(10); // DateTime(2023,12,16,21,50,0)
 
-/// The day after this [DateTime]
+/// The day After this [DateTime]
 DateTime(2017, 3, 5).nextDay; // return DateTime(2017, 3, 6)
 
 /// The day previous this [DateTime]
@@ -177,7 +177,7 @@ Navigator.push(
     MaterialPageRoute(builder: (context) => SecondScreen()),
   );
 
-// After
+// Now
 
 // for push
 context.push(SecondScreen());
@@ -210,7 +210,7 @@ SizedBox(
     height : 20
    )
 
-// After
+// Now
 // makes space of 20 height
 20.heightBox; 
 
@@ -227,7 +227,7 @@ Padding(
   child: Text("text"),
 );
 
-// After
+// Now
 Text("text").padAll(8.0),
 ```
 
@@ -249,7 +249,7 @@ Align(
   child: Text("text"),
 );
 
-// After
+// Now
 Text("text").leftAlign,
 ```
 
@@ -273,7 +273,7 @@ Flexible(
   child: Text("text"),
 )
 
-// After
+// Now
 Text("text").flexible
 ```
 
@@ -296,6 +296,17 @@ Similar available widget extensions are:
 * `widthBox(height)` Will wrap the widget with a SizedBox of a given width
 
 
+#### Container Extensions
+Now we can just add round corners, shadows, align, and add gestures to our Widgets.
+```dart
+Container(
+      height: 100,
+       width: 100,)
+         .withRoundCorners(backgroundColor: Colors.grey)
+         .withShadow()
+```
+
+
 #### Shimmer Effect
 ![OYCE3](https://user-images.githubusercontent.com/31765271/177955655-66a856a6-108a-429f-bbad-64b1c3f114aa.gif)
 ```dart
@@ -303,4 +314,27 @@ Container(height: 50,width: 50,).applyShimmer();
 ```
 You can also change the color of the shimmer using `baseColor` & `highlightColor`.
 
-  
+
+#### Alert Dialog Box
+
+Automatically detect Platform and show Material and Cupertino dialog
+```dart
+context.showAlertDialog(title: 'title', message: 'message',)
+```
+
+#### Nil Widget
+Sometimes, according to a condition, we need to display nothing. Usually, when we can't return null, we would return something like `const SizedBox()`.
+
+This is good, but it has some performance impacts since `SizedBox` creates a `RenderObject`. The `RenderObject` lives in the render tree and some computations are performed on it, even if it paints nothing on the screen.
+
+We can do better, we can have a widget that does not create a `RenderObject` while being still valid. The `Nil` widget is the minimal implementation for this use case. It only creates an `Element` and does nothing while it's building. Because the optimal way to use it, is to call `const Nil()`, it also comes with a `nil` constant that you can use everywhere (which is a `const Nil()`).
+
+```dart
+// Before
+text != null ? Text(text) : const SizedBox()
+
+// Now
+text != null ? Text(text) : nil
+or
+text != null ? Text(text) : const Nil()
+```

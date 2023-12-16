@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
+
+import 'shimmer/shimmer.dart';
 
 extension WidgetExtensions on Widget {
   /// Will [Unfocus] any focused textfield

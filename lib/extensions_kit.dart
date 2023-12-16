@@ -12,3 +12,6 @@ export 'src/widget_ext.dart';
 export 'src/navigation_ext.dart';
 export 'src/container_ext.dart';
 export 'src/text_ext.dart';
+export 'src/avatar.dart';
+export 'src/url_strategy.dart';
+export 'src/nil.dart';
