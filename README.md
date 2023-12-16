@@ -279,6 +279,7 @@ Text("text").flexible
 
 Similar available widget extensions are:
 * `unfocus` Will [Unfocus] focused text field, It's better to use it on the main parent widget of the screen e.g. [Scaffold]
+* `tooltip()` Will wrap the widget with a Tooltip widget
 * `flexible()` Will wrap the widget with a Flexible widget
 * `expanded()` Will wrap the widget with an Expanded widget
 * `withOpacity()` Will wrap the widget with an Opacity widget
@@ -290,7 +291,6 @@ Similar available widget extensions are:
 * `positionTB()` Will wrap the widget with a Positioned widget and accept top & bottom position
 * `positionLT()` Will wrap the widget with a Positioned widget and accept left & right position
 * `positionLRTB()` Will wrap the widget with a Positioned widget and accept left,right,top & bottom position
-* `tooltip()` Will wrap the widget with a Tooltip widget
 * `sizedBox(width,height)` Will wrap the widget with a SizedBox of given height and width
 * `heightBox(height)` Will wrap the widget with a SizedBox of a given height
 * `widthBox(height)` Will wrap the widget with a SizedBox of a given width
