@@ -1,5 +1,5 @@
 <img src="https://raw.githubusercontent.com/zainulabidin379/extensions_kit/main/assets/images/header.png" alt="Logo" width="100%">
-<p align="center">A powerful yet lightweight library of dart extensions to remove the boilerplate and speed up the development process.</p>
+<p align="center">An essential and powerful library of dart extensions to remove the boilerplate and speed up the development process.</p>
 <br>
 
 ## Installation
