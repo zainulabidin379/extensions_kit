@@ -1,5 +1,5 @@
 <img src="https://raw.githubusercontent.com/zainulabidin379/extensions_kit/main/assets/images/header.png" alt="Logo" width="100%">
-<p align="center">A powerful yet lightweight library of dart extensions to remove the boilerplate and speed up the development process</p>
+<p align="center">An essential and powerful library of dart extensions to remove the boilerplate and speed up the development process.</p>
 <br>
 
 ## Installation
@@ -19,16 +19,19 @@ import 'package:extensions_kit/extensions_kit.dart';
 ```
 
 
-Available Extensions & Methods💪
+Available Extensions & Methods 🔥
 
   - [String Extensions](#string-extensions)
-  - [Context Extensions](#context-extensions)
+  - [Media Query Extensions](#media-query-extensions)
+  - [Theme Extensions](#theme-extensions)
   - [Date Extensions](#date-extensions)
+  - [Navigation Extensions](#navigation-extensions)
   - [Number Extensions](#number-extensions)
   - [Widget Extensions](#widget-extensions)
-  - [Padding Extensions](#padding-extensions)
   - [Text Style Extensions](#text-style-extensions)
   - [Support](#support)
+  - [Acknowledgments](#acknowledgments)
+  - [Bugs or Requests](#bugs-or-requests)
 
 
 
@@ -88,3 +91,449 @@ Available Extensions & Methods💪
 // Check if the String matches the Regular expression
 "username_10".hasMatch("r'[abcdefghijklmnopqrstuvwxyz1234567890._]"); // true
 ```
+
+## Media Query Extensions
+From the `MediaQuery` Access properties right in the `context` instance.
+
+```dart
+
+// Before
+ Container(
+     width: MediaQuery.of(context).size.width,
+     height: MediaQuery.of(context).size.height,
+        ),
+
+// Now
+Container(
+     width: context.w(), // 100% of screen width
+     height: context.h(), // 100% of screen height
+        ),
+Container(
+     width: context.w(w: 50), // 50% of screen width
+     height: context.h(h: 40.5), // 40.5% of screen height
+        ),
+```
+
+## Theme Extensions
+
+```dart
+
+// Returns boolean 
+context.isDarkMode; // true/false
+context.isLightMode; // true/false
+
+```
+
+## Date Extensions
+
+```dart
+// Get Date only
+DateTime(2023,12,16,11,40,00,0,0).dateOnly; // DateTime(2023,12,16) *time set to midnight
+
+// Check if [DateTime] is on the same day as today
+DateTime.now().isToday; // true
+
+// Check if [DateTime] was on the same day as yesterday
+DateTime.now().isYesterday; // false
+
+// Check if [DateTime] will be on the same day as tomorrow
+DateTime.now().isTomorrow; // false
+
+// Add a certain number of DAYS to [DateTime] 
+DateTime(2023,12,16).addDays(5); // DateTime(2023,12,21)
+
+// Add a certain number of HOURS to [DateTime]
+DateTime(2023,12,16,11,50,0).addHours(10); // DateTime(2023,12,16,21,50,0)
+
+/// The day After this [DateTime]
+DateTime(2017, 3, 5).nextDay; // return DateTime(2017, 3, 6)
+
+/// The day previous this [DateTime]
+DateTime(2017, 3, 5).previousDay; // return DateTime(2017, 3, 4)
+
+// First day of the month
+DateTime(2018, 9, 30).firstDayOfMonth; // returns DateTime(2018, 9, 1)
+
+// Last day of the month
+DateTime(2017, 3).lastDayOfMonth; // DateTime(2017, 3, 31)
+
+// All days in a month, [DateTime] Array
+DateTime(2017, 3).daysInMonth; // [DateTime(2017, 3, 1), DateTime(2017, 3, 2), ...]
+
+// Whether or not two times are on the same day.
+DateTime.now().isSameDay(DateTime.now()); // returns true
+
+// Whether or not two times are on the same week.
+DateTime(2017, 3, 5).isSameWeek(DateTime(2017, 3, 6));
+
+```
+
+## Navigation Extensions
+From the `Navigator` Access properties right in the `context` instance.
+
+```dart
+// Before
+Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => SecondScreen()),
+  );
+
+// Now
+
+// for push
+context.push(SecondScreen());
+context.pushNamed('/home');
+
+// For back, you can also add back result data
+context.pop();
+
+// for push replacement
+context.pushReplacement(SecondScreen());
+context.pushReplacementNamed('/home');
+
+// popUntil
+context.popUntil('/login');
+
+// with rootNavigator
+context.push(SecondScreen(), rootNavigator: true);
+context.pushReplacement(SecondScreen(), rootNavigator: true);
+context.popUntil('/login', rootNavigator: true);
+```
+
+## Number Extensions
+
+```dart
+// Get number into its English ordinal representation
+1.ordinal; // 1st
+3.ordinal/ // 3rd
+234.ordinal; // 234th
+
+// Get a string with comma separator like `1,233,15` if the String is '123315'
+1234.currency; // 1,234
+142343.currency; // 142,343
+
+// You can also specify your pattern
+142343.currencyWithPattern("#,##,###"); // 1,42,343
+
+// Check if the number is between the given numbers
+45.between(40,60); // true
+23.between(10,20); // false
+
+// Check if the number is outside the given numbers
+60.outside(40,65); // false
+23.outside(10,20); // true
+```
+
+An easy way to specify a border radius 
+```dart
+// Before
+Container(
+   height: 100,
+   width: 100,
+   decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(25),
+   ),
+)
+
+// Now
+Container(
+   height: 100,
+   width: 100,
+   decoration: BoxDecoration(
+      borderRadius: 25.circular(),
+   ),
+)
+```
+
+An easy way to specify padding to a `Padding` widget
+```dart
+// Before
+Padding(
+   padding: EdgetInsets.all(15),
+   child: Text("Text"),
+)
+
+// Now
+Padding(
+   padding: 15.padAll(),
+   child: Text("Text"),
+)
+```
+Similar available padding extensions to numbers are:
+* `padAll()` Creates insets from offsets from all sides.
+* `padHrz()` Creates insets from offsets from horizontal sides.
+* `padVert()` Creates insets from offsets from vertical sides.
+* `padTop()` Creates insets from offsets from the top side.
+* `padBottom()` Creates insets from offsets from the bottom side.
+* `padLeft()` Creates insets from offsets from the left side.
+* `padRight()` Creates insets from offsets from the right side.
+* `padOnly()` Creates insets from offsets from the given sides only.
+
+
+## Widget Extensions
+These widget extensions will help you to reduce boilerplate code and increase your productivity
+
+#### SizeBox
+```dart
+// Before
+SizedBox(
+    height : 20
+   )
+
+// Now
+// makes space of 20 height
+20.heightBox; 
+
+// for width
+20.widthBox
+```
+
+#### Padding
+
+```dart
+// Before
+Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: Text("text"),
+);
+
+// Now
+Text("text").padAll(8.0),
+```
+
+Similar available padding extensions to widgets are:
+* `padAll()` Creates insets from offsets from all sides.
+* `padHrz()` Creates insets from offsets from horizontal sides.
+* `padVert()` Creates insets from offsets from vertical sides.
+* `padTop()` Creates insets from offsets from the top side.
+* `padBottom()` Creates insets from offsets from the bottom side.
+* `padLeft()` Creates insets from offsets from the left side.
+* `padRight()` Creates insets from offsets from the right side.
+* `padOnly()` Creates insets from offsets from the given sides only.
+
+#### Alignment
+
+```dart
+// Before
+Align(
+  alignment: Alignment.centerLeft,
+  child: Text("text"),
+);
+
+// Now
+Text("text").leftAlign,
+```
+
+Similar available Alignment extensions are:
+* `center` Aligns the widget to the center.
+* `leftAlign` Aligns the widget to the center left.
+* `rightAlign` Aligns the widget to the center right.
+* `topAlign` Aligns the widget to the top center.
+* `topLeftAlign` Aligns the widget to the top left.
+* `topRightAlign` Aligns the widget to the top right.
+* `bottomAlign` Aligns the widget to the bottom center.
+* `bottomLeftAlign` Aligns the widget to the bottom left.
+* `bottomRightAlign` Aligns the widget to the bottom right.
+
+
+### Flexible
+
+```dart
+/// Before
+Flexible(
+  child: Text("text"),
+)
+
+// Now
+Text("text").flexible
+```
+
+Similar available widget extensions are:
+* `unfocus` Will [Unfocus] focused text field, It's better to use it on the main parent widget of the screen e.g. [Scaffold]
+* `tooltip()` Will wrap the widget with a Tooltip widget
+* `flexible()` Will wrap the widget with a Flexible widget
+* `expanded()` Will wrap the widget with an Expanded widget
+* `withOpacity()` Will wrap the widget with an Opacity widget
+* `onDoubleTap()` Will wrap the widget with a GestureDetector and accept an onDoubleTap function
+* `onTap()` Will wrap the widget with a GestureDetector and accept an onTap function
+* `onLongPress()` Will wrap the widget with a GestureDetector and accept an onLongPress function
+* `positionTop()` Will wrap the widget with a Positioned widget and accept top position
+* `positionBottom()` Will wrap the widget with a Positioned widget and accept bottom position
+* `positionTB()` Will wrap the widget with a Positioned widget and accept top & bottom position
+* `positionLT()` Will wrap the widget with a Positioned widget and accept left & right position
+* `positionLRTB()` Will wrap the widget with a Positioned widget and accept left,right,top & bottom position
+* `sizedBox(width,height)` Will wrap the widget with a SizedBox of given height and width
+* `heightBox(height)` Will wrap the widget with a SizedBox of a given height
+* `widthBox(height)` Will wrap the widget with a SizedBox of a given width
+
+
+#### Container Extensions
+Now we can just add round corners, shadows, align, and add gestures to our Widgets.
+```dart
+Container(
+      height: 100,
+       width: 100,)
+         .withRoundCorners(backgroundColor: Colors.grey)
+         .withShadow()
+```
+
+
+#### Shimmer Effect
+![OYCE3](https://user-images.githubusercontent.com/31765271/177955655-66a856a6-108a-429f-bbad-64b1c3f114aa.gif)
+```dart
+Container(height: 50,width: 50,).applyShimmer();
+```
+You can also change the color of the shimmer using `baseColor` & `highlightColor`.
+
+
+#### Alert Dialog Box
+
+Automatically detect Platform and show Material and Cupertino dialog
+```dart
+context.showAlertDialog(title: 'title', message: 'message',)
+```
+
+#### Nil Widget
+Sometimes, according to a condition, we need to display nothing. Usually, when we can't return null, we would return something like `const SizedBox()`.
+
+This is good, but it has some performance impacts since `SizedBox` creates a `RenderObject`. The `RenderObject` lives in the render tree and some computations are performed on it, even if it paints nothing on the screen.
+
+We can do better, we can have a widget that does not create a `RenderObject` while being still valid. The `Nil` widget is the minimal implementation for this use case. It only creates an `Element` and does nothing while it's building. Because the optimal way to use it, is to call `const Nil()`, it also comes with a `nil` constant that you can use everywhere (which is a `const Nil()`).
+
+```dart
+// Before
+text != null ? Text(text) : const SizedBox()
+
+// Now
+text != null ? Text(text) : nil
+or
+text != null ? Text(text) : const Nil()
+```
+
+#### TextStyle
+From the `TextStyle` Access properties right in the `context` instance.
+
+```dart
+// Before
+Text('Hello World',style: Theme.of(context).textTheme.labelSmall),
+
+Text('Hello World', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 40)
+
+// After
+Text('Hello World',style: context.labelSmall),
+// OR
+Text('Hello World',style: context.displaySmall),
+// If you want to bold text then 
+Text('Hello World',style: context.labelSmall.bold),   
+```
+Similar fontWeights are:
+* `thick` The most thick - FontWeight.w900
+* `extraBold` Extra-bold - FontWeight.w800
+* `bold` Bold - FontWeight.bold - FontWeight.w700
+* `semiBold` Semi-bold - FontWeight.w600
+* `medium` Medium - FontWeight.w500
+* `regular` Regular - FontWeight.w400
+* `light` Light - FontWeight.w300
+* `extraLight` Extra-light - FontWeight.w200
+* `thin` Thin, the least thick - FontWeight.w100
+
+
+Similar TextStyles are:
+* `context.displayLarge`
+* `context.displayMedium`
+* `context.displaySmall`
+* `context.headlineLarge`
+* `context.headlineMedium`
+* `context.headlineSmall`
+* `context.titleLarge`
+* `context.titleMedium`
+* `context.titleSmall`
+* `context.bodyLarge`
+* `context.bodyMedium`
+* `context.bodySmall`
+* `context.labelLarge`
+* `context.labelMedium`
+* `context.labelSmall`
+
+#### Text
+If you do not want use theme textsyles, then there are methods that you can use on a `Text` widget
+
+```dart
+Text('Hello World')
+    .bold()
+    .fontSize(25)
+    .italic();
+```
+
+Similar methods are:
+* `textScale()`  TextScale
+* `bold()`  Bold Text
+* `italic()`  Italic Text
+* `fontWeight()`  Specific FontWeight
+* `fontSize()`  Specific FontSize
+* `letterSpacing()`  Specific LetterSpacing
+* `wordSpacing()`  Specific WordSpacing
+* `fontFamily()`  Specific FontFamily
+* `textShadow()`  Specific TextShadow
+* `textColor()`   TextColor
+* `textAlignment()`  Specific TextAlignment
+* `withUnderLine()`  TextUnderLine
+
+
+
+## Url Strategy
+
+With a simple call of `setPathUrlStrategy`, your Flutter web app does not have a leading `#`
+in the URL anymore 🚀
+```dart
+void main() {
+// Here we set the URL strategy for our web app.
+// It is safe to call this function when running on mobile or desktop as well.
+setPathUrlStrategy();
+runApp(MyApp());
+}
+```
+
+
+## Avatar Image
+```dart
+AvatarImage(
+   backgroundImage: NetworkImage(
+    'https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg'),
+     shape: AvatarImageShape.standard,
+     size: ImageSize.LARGE,
+     child: Text('Lucky'),
+          backgroundColor: Colors.red,
+      ),
+
+AvatarImage(
+    shape: AvatarImageShape.circle,
+    child: Text('JP'),
+    backgroundColor: Colors.red,
+      ),
+```
+![avatar-image](https://user-images.githubusercontent.com/31765271/205228265-a30afe80-1f12-4874-808f-177aafb25b4a.jpeg)
+![avatar-name](https://user-images.githubusercontent.com/31765271/205228285-e5a52b8e-0675-4796-858b-7257d1925a5b.jpeg)
+
+| Properties      | Description                                                                                                |
+| --------------- | ---------------------------------------------------------------------------------------------------------- |
+| child           | type of [Widget], which can have text , icon etc                                                           |
+| backgroundColor | Color to fill the background of avatar                                                                     |
+| foregroundColor | Color to change the textColor inside the avatar                                                            |
+| radius          | size of the avatar                                                                                         |
+| minRadius       | minimum size of the avatar                                                                                 |
+| maxRadius       | maximun size of the avatar                                                                                 |
+| size            | size of the avatar i.e `ImageSize.large`, `ImageSize.medium`, `ImageSize.small`                            |
+| shape           | shape of the avatar i.e, `AvatarImageShape.standard`, `AvatarImageShape.circle`, `AvatarImageShape.square` |
+| borderRadius    | extra radius to avatar shapes, not applicable to circular avatar                                           |
+
+## Support
+If this package helped you please leave a like and share it with your friends.
+
+
+## Acknowledgments
+This package has a lot of extensions that are originally from another package [awesome_extensions](https://github.com/jayeshpansheriya/awesome_extensions), do check it out too.
+
+## Bugs or Requests
+If you encounter any problems feel free to open an [issue](https://github.com/zainulabidin379/extensions_kit/issues/new?template=bug_report.md). If you feel the library is missing a feature, please raise a [ticket](https://github.com/zainulabidin379/extensions_kit/issues/new?template=feature_request.md). Pull requests are also welcomed.
+

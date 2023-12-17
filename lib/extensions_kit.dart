@@ -9,3 +9,4 @@ export 'src/padding_ext.dart';
 export 'src/string_ext.dart';
 export 'src/text_styles_ext.dart';
 export 'src/widget_ext.dart';
+export 'src/text_ext.dart';

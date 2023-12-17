@@ -42,4 +42,17 @@ extension PaddingExtension on Widget {
         padding: EdgeInsets.only(bottom: padding),
         child: this,
       );
+
+  /// Padding Only
+  Widget padOnly({
+    double left = 0,
+    double right = 0,
+    double top = 0,
+    double bottom = 0,
+  }) =>
+      Padding(
+        padding:
+            EdgeInsets.only(bottom: bottom, top: top, left: left, right: right),
+        child: this,
+      );
 }

@@ -88,6 +88,15 @@ extension NumberExtensions on num {
   /// Creates [EdgeInsets] with only the bottom value.
   EdgeInsets padBottom() => EdgeInsets.only(bottom: toDouble());
 
+  /// Creates [EdgeInsets] with only the given value.
+  EdgeInsets padOnly({
+    double l = 0,
+    double r = 0,
+    double t = 0,
+    double b = 0,
+  }) =>
+      EdgeInsets.only(left: l, bottom: b, top: t, right: r);
+
   /// Creates [BorderRadiusGeometry] with given value.
   BorderRadiusGeometry circular() => BorderRadius.circular(toDouble());
 }
