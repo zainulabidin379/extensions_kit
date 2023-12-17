@@ -200,7 +200,7 @@ context.pushReplacement(SecondScreen(), rootNavigator: true);
 context.popUntil('/login', rootNavigator: true);
 ```
 
-<<<<<<< HEAD
+
 ## Number Extensions
 
 ```dart
@@ -270,9 +270,6 @@ Similar available padding extensions to numbers are:
 * `padRight()` Creates insets from offsets from the right side.
 * `padOnly()` Creates insets from offsets from the given sides only.
 
-=======
->>>>>>> c96da0d777fb6d5237082c1e8161b10de6979d95
-
 ## Widget Extensions
 These widget extensions will help you to reduce boilerplate code and increase your productivity
 
@@ -304,7 +301,7 @@ Padding(
 Text("text").padAll(8.0),
 ```
 
-<<<<<<< HEAD
+
 Similar available padding extensions to widgets are:
 * `padAll()` Creates insets from offsets from all sides.
 * `padHrz()` Creates insets from offsets from horizontal sides.
@@ -314,16 +311,6 @@ Similar available padding extensions to widgets are:
 * `padLeft()` Creates insets from offsets from the left side.
 * `padRight()` Creates insets from offsets from the right side.
 * `padOnly()` Creates insets from offsets from the given sides only.
-=======
-Similar available padding extensions are:
-* `padAll` Creates insets from offsets from all sides.
-* `padHrz` Creates insets from offsets from horizontal sides.
-* `padVert` Creates insets from offsets from vertical sides.
-* `padTop` Creates insets from offsets from the top side.
-* `padBottom` Creates insets from offsets from the bottom side.
-* `padLeft` Creates insets from offsets from the left side.
-* `padRight` Creates insets from offsets from the right side.
->>>>>>> c96da0d777fb6d5237082c1e8161b10de6979d95
 
 #### Alignment
 
@@ -363,7 +350,7 @@ Text("text").flexible
 ```
 
 Similar available widget extensions are:
-* `unfocus` Will [Unfocus] focused text field, It's better to use it on the main parent widget of the screen e.g. [Scaffold]
+* `unfocus` Will [Unfocus] focused text field, It's better to use it on the main parent widget of the screen e.g. `Scaffold`
 * `tooltip()` Will wrap the widget with a Tooltip widget
 * `flexible()` Will wrap the widget with a Flexible widget
 * `expanded()` Will wrap the widget with an Expanded widget
@@ -423,7 +410,6 @@ text != null ? Text(text) : nil
 or
 text != null ? Text(text) : const Nil()
 ```
-<<<<<<< HEAD
 
 #### TextStyle
 From the `TextStyle` Access properties right in the `context` instance.
@@ -552,5 +538,4 @@ This package has a lot of extensions that are originally from another package [a
 ## Bugs or Requests
 If you encounter any problems feel free to open an [issue](https://github.com/zainulabidin379/extensions_kit/issues/new?template=bug_report.md). If you feel the library is missing a feature, please raise a [ticket](https://github.com/zainulabidin379/extensions_kit/issues/new?template=feature_request.md). Pull requests are also welcomed.
 
-=======
->>>>>>> c96da0d777fb6d5237082c1e8161b10de6979d95
+
