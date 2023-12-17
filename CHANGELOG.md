@@ -1,4 +1,10 @@
-## 0.0.2
+## 0.0.4
+
+- Licence Updated
+- pubspec.yaml Updated
+
+
+## 0.0.3
 
 - Licence Updated
 
