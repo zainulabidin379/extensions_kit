@@ -16,12 +16,13 @@ extension WidgetExtensions on Widget {
 
   /// Aligns the [Widget] to Center LEFT
   Widget get leftAlign => Align(alignment: Alignment.centerLeft, child: this);
-  
+
   /// Aligns the [Widget] to Top LEFT
   Widget get topLeftAlign => Align(alignment: Alignment.topLeft, child: this);
-  
+
   /// Aligns the [Widget] to Bottom LEFT
-  Widget get bottomLeftAlign => Align(alignment: Alignment.bottomLeft, child: this);
+  Widget get bottomLeftAlign =>
+      Align(alignment: Alignment.bottomLeft, child: this);
 
   /// Aligns the [Widget] to Center RIGHT
   Widget get rightAlign => Align(alignment: Alignment.centerRight, child: this);
@@ -30,7 +31,8 @@ extension WidgetExtensions on Widget {
   Widget get topRightAlign => Align(alignment: Alignment.topRight, child: this);
 
   /// Aligns the [Widget] to Bottom RIGHT
-  Widget get bottomRightAlign => Align(alignment: Alignment.bottomRight, child: this);
+  Widget get bottomRightAlign =>
+      Align(alignment: Alignment.bottomRight, child: this);
 
   /// Aligns the [Widget] to TOP Center
   Widget get topAlign => Align(alignment: Alignment.topCenter, child: this);

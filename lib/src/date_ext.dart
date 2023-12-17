@@ -34,6 +34,7 @@ extension DateExtension on DateTime {
         month == nowDate.month &&
         day == nowDate.day - 1;
   }
+
   /// Returns [true] if the date will be on the same day as tomorrow otherwise [false]
   bool get isTomorrow {
     final nowDate = DateTime.now();

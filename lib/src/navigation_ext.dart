@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 extension NavigatorExt on BuildContext {

@@ -91,5 +91,4 @@ extension StringExtension on String {
 
   /// Checks whether this regular expression has a match in the [pattern].
   bool hasMatch(String pattern) => RegExp(pattern).hasMatch(this);
-
 }

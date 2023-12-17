@@ -1,7 +1,7 @@
 name: extensions_kit
-description: An essential and powerful library of dart extensions
-version: 0.0.1
-homepage: https://thecreativezee.com
+description: An essential and powerful library of dart extensions to remove the boilerplate and speed up the development process.
+version: 0.0.2
+homepage: https://github.com/zainulabidin379/extensions_kit
 repository: https://github.com/zainulabidin379/extensions_kit
 
 environment:

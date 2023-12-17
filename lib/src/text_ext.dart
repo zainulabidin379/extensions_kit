@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 extension StyledText<T extends Text> on T {
@@ -58,8 +57,7 @@ extension StyledText<T extends Text> on T {
         ),
       ) as T;
 
-  T textScale(TextScaler textScaler) =>
-      copyWith(textScaler: textScaler) as T;
+  T textScale(TextScaler textScaler) => copyWith(textScaler: textScaler) as T;
 
   T bold() => copyWith(
         style: (style ?? const TextStyle()).copyWith(
