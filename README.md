@@ -28,6 +28,8 @@ Available Extensions & Methods 🔥
   - [Navigation Extensions](#navigation-extensions)
   - [Number Extensions](#number-extensions)
   - [Widget Extensions](#widget-extensions)
+  - [Url Strategy](#url-strategy)
+  - [Avatar Image](#avatar-image)
   - [Text Style Extensions](#text-style-extensions)
   - [Support](#support)
   - [Acknowledgments](#acknowledgments)
@@ -418,14 +420,14 @@ From the `TextStyle` Access properties right in the `context` instance.
 // Before
 Text('Hello World',style: Theme.of(context).textTheme.labelSmall),
 
-Text('Hello World', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 40)
+Text('Hello World', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 40))
 
 // After
-Text('Hello World',style: context.labelSmall),
+Text('Hello World',style: context.textStyles.labelSmall),
 // OR
-Text('Hello World',style: context.displaySmall),
+Text('Hello World',style: context.textStyles.displaySmall),
 // If you want to bold text then 
-Text('Hello World',style: context.labelSmall.bold),   
+Text('Hello World',style: context.textStyles.labelSmall.bold),   
 ```
 Similar fontWeights are:
 * `thick` The most thick - FontWeight.w900
@@ -440,21 +442,21 @@ Similar fontWeights are:
 
 
 Similar TextStyles are:
-* `context.displayLarge`
-* `context.displayMedium`
-* `context.displaySmall`
-* `context.headlineLarge`
-* `context.headlineMedium`
-* `context.headlineSmall`
-* `context.titleLarge`
-* `context.titleMedium`
-* `context.titleSmall`
-* `context.bodyLarge`
-* `context.bodyMedium`
-* `context.bodySmall`
-* `context.labelLarge`
-* `context.labelMedium`
-* `context.labelSmall`
+* `context.textStyles.displayLarge`
+* `context.textStyles.displayMedium`
+* `context.textStyles.displaySmall`
+* `context.textStyles.headlineLarge`
+* `context.textStyles.headlineMedium`
+* `context.textStyles.headlineSmall`
+* `context.textStyles.titleLarge`
+* `context.textStyles.titleMedium`
+* `context.textStyles.titleSmall`
+* `context.textStyles.bodyLarge`
+* `context.textStyles.bodyMedium`
+* `context.textStyles.bodySmall`
+* `context.textStyles.labelLarge`
+* `context.textStyles.labelMedium`
+* `context.textStyles.labelSmall`
 
 #### Text
 If you do not want use theme textsyles, then there are methods that you can use on a `Text` widget

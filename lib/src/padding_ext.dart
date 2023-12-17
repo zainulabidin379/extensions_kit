@@ -55,4 +55,17 @@ extension PaddingExtension on Widget {
             EdgeInsets.only(bottom: bottom, top: top, left: left, right: right),
         child: this,
       );
+
+  /// Padding Symmetric
+  Widget padSymmetric({
+    double horizontal = 0,
+    double vertical = 0,
+  }) =>
+      Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontal,
+          vertical: vertical,
+        ),
+        child: this,
+      );
 }
