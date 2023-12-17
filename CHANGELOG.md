@@ -1,8 +1,12 @@
 ## 0.0.2
 
-- Updated Licence
-- Code formatted
-- Pubspec.yaml Updated
+- Licence Updated
+
+
+## 0.0.2
+
+- Code Formatted
+- pubspec.yaml Updated
 
 
 ## 0.0.1
