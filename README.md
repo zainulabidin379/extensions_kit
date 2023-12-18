@@ -107,12 +107,12 @@ From the `MediaQuery` Access properties right in the `context` instance.
 
 // Now
 Container(
-     width: context.w(), // 100% of screen width
-     height: context.h(), // 100% of screen height
+     width: context.width, // 100% of screen width
+     height: context.height, // 100% of screen height
         ),
 Container(
-     width: context.w(w: 50), // 50% of screen width
-     height: context.h(h: 40.5), // 40.5% of screen height
+     width: context.w(50), // 50% of screen width
+     height: context.h(40.5), // 40.5% of screen height
         ),
 ```
 

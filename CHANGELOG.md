@@ -1,3 +1,8 @@
+## 0.0.5
+
+- Updated media query extensions
+
+
 ## 0.0.4
 
 - Licence Updated
