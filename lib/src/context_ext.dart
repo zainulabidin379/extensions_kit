@@ -9,7 +9,6 @@ extension ContextExtensions on BuildContext {
   /// Get X percent of Width of a screen
   double w(double width) => width * MediaQuery.of(this).size.width / 100;
 
-  
   /// Get 100 percent of Height of a screen
   double get height => MediaQuery.of(this).size.height / 100;
 
