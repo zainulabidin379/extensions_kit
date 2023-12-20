@@ -1,3 +1,10 @@
+## 0.0.6
+
+- Added Gap widget
+- Added Date format extension
+- Updated Readme
+
+
 ## 0.0.5
 
 - Updated media query extensions

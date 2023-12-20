@@ -15,3 +15,4 @@ export 'src/text_ext.dart';
 export 'src/text_styles_ext.dart';
 export 'src/url_strategy.dart';
 export 'src/widget_ext.dart';
+export 'src/gap_ext.dart';

@@ -28,12 +28,13 @@ Available Extensions & Methods 🔥
   - [Navigation Extensions](#navigation-extensions)
   - [Number Extensions](#number-extensions)
   - [Widget Extensions](#widget-extensions)
+  - [Gap Widget](#gap-widget)
   - [Url Strategy](#url-strategy)
   - [Avatar Image](#avatar-image)
   - [Text Style Extensions](#text-style-extensions)
   - [Support](#support)
-  - [Acknowledgments](#acknowledgments)
-  - [Bugs or Requests](#bugs-or-requests)
+  - [Acknowledgments and References](#acknowledgments-and-references)
+  - [Bugs or Feature Requests](#bugs-or-feature-requests)
 
 
 
@@ -107,8 +108,8 @@ From the `MediaQuery` Access properties right in the `context` instance.
 
 // Now
 Container(
-     width: context.width, // 100% of screen width
-     height: context.height, // 100% of screen height
+     width: context.screenWidth, // 100% of screen width
+     height: context.screenHeight, // 100% of screen height
         ),
 Container(
      width: context.w(50), // 50% of screen width
@@ -127,6 +128,14 @@ context.isLightMode; // true/false
 ```
 
 ## Date Extensions
+
+To format `DateTime` 
+```dart
+// Formats `DateTime` into readable form according to the given format
+DateTime.now().format("dd/MM/yyyy - hh:mm a") // 20/12/2023 - 08:00 PM
+```
+
+
 
 ```dart
 // Get Date only
@@ -413,7 +422,29 @@ or
 text != null ? Text(text) : const Nil()
 ```
 
-#### TextStyle
+## Gap Widget
+
+When it comes to add empty space between widgets inside a `Column` or a `Row`, we have multiple options:
+- We can either add a `Padding` around these widgets but it's very verbose
+- Or we can add `SizedBox` widgets between them.
+
+`Gap` is another option. It's like `SizedBox` but you don't have to know if it's inside a `Row` or a `Column`. So that it's less verbose than using a `SizedBox`.
+
+You just have to add a `Gap` inside a `Column` or a `Row` with the specified extent. The `Gap` widget also works inside `Scrollable` widgets such as `ListViews`. In these cases, it will occupy the space in the same direction as the `Scrollable`.
+
+```dart
+return Column(
+  children: <Widget>[
+    Container(color: Colors.red, height: 20),
+    const Gap(20), // Adds an empty space of 20 pixels.
+    Container(color: Colors.red, height: 20),
+  ],
+);
+```
+
+
+## Text Style Extensions
+
 From the `TextStyle` Access properties right in the `context` instance.
 
 ```dart
@@ -534,10 +565,11 @@ AvatarImage(
 If this package helped you please leave a like and share it with your friends.
 
 
-## Acknowledgments
-This package has a lot of extensions that are originally from another package [awesome_extensions](https://github.com/jayeshpansheriya/awesome_extensions), do check it out too.
+## Acknowledgments and References
+- A lot of extension from [Awesome Extensions](https://pub.dev/packages/awesome_extensions) By [Jayesh Pansheriya](https://github.com/jayeshpansheriya/awesome_extensions)
+- [Gap](https://pub.dev/packages/gap) By [Romain Rastel](https://github.com/letsar/gap)
 
-## Bugs or Requests
+## Bugs or Feature Requests
 If you encounter any problems feel free to open an [issue](https://github.com/zainulabidin379/extensions_kit/issues/new?template=bug_report.md). If you feel the library is missing a feature, please raise a [ticket](https://github.com/zainulabidin379/extensions_kit/issues/new?template=feature_request.md). Pull requests are also welcomed.
 
 

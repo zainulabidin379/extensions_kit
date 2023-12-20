@@ -10,10 +10,10 @@ extension ContextExtensions on BuildContext {
   double w(double width) => width * MediaQuery.of(this).size.width / 100;
 
   /// Get 100 percent of Height of a screen
-  double get height => MediaQuery.of(this).size.height / 100;
+  double get screenHeight => MediaQuery.of(this).size.height / 100;
 
   /// Get 100 percent of Width of a screen
-  double get width => MediaQuery.of(this).size.width / 100;
+  double get screenWidth => MediaQuery.of(this).size.width / 100;
 
   /// Indicates whether the app is in dark mode
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
@@ -48,7 +48,7 @@ extension ContextExtensions on BuildContext {
         barrierDismissible,
       );
     } else {
-      // shoe material dialog
+      // show material dialog
       _showAndroidDialog(
         this,
         title,

@@ -25,13 +25,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Ext.green600),
         useMaterial3: true,
       ),
-      home:  MyHomePage(title: 'Extensions Kit Example'),
+      home: MyHomePage(title: 'Extensions Kit Example'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-   MyHomePage({super.key, required this.title});
+  MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -40,7 +40,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
- DateTime dateTime = DateTime.now();
+  DateTime dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -51,89 +51,91 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: [
-              /// Shimmer Effect
-              ElevatedButton(
-                  onPressed: () {
-                    context.push(ShimmerEffectExample());
-                  },
-                  child: Text('Shimmer Effect')),
+          /// Shimmer Effect
+          ElevatedButton(
+              onPressed: () {
+                context.push(ShimmerEffectExample());
+              },
+              child: Text('Shimmer Effect')),
 
-              20.0.heightBox,
+          20.heightBox,
 
-              /// Text Theme Extensions
-              ElevatedButton(
-                  onPressed: () {
-                    context.push(TextExample());
-                  },
-                  child: Text('Text Example')),
+          /// Text Theme Extensions
+          ElevatedButton(
+              onPressed: () {
+                context.push(TextExample());
+              },
+              child: Text('Text Example')),
 
-              ///SizeBox Extensions
-              20.0.heightBox,
-              20.0.widthBox,
+          ///SizeBox Extensions
+          20.heightBox,
+          20.widthBox,
 
-              Row(
-                children: [
-                  Text(
-                    'Hello World',
-                  ),
-                  20.0.widthBox,
-                  Text(
-                    'Hello World',
-                  )
-                ],
+          Row(
+            children: [
+              Text(
+                'Hello World',
               ),
+              20.widthBox,
+              Text(
+                'Hello World',
+              )
+            ],
+          ),
 
-              20.0.heightBox,
+          /// Gap Extension
+          const Gap(20), // Adds an empty space of 20 pixels.
 
-              /// Widget Extensions
-              ElevatedButton(
-                  onPressed: () {
-                    context.push(WidgetExample());
-                  },
-                  child: Text('Widget Ext')),
+          /// Widget Extensions
+          ElevatedButton(
+              onPressed: () {
+                context.push(WidgetExample());
+              },
+              child: Text('Widget Ext')),
 
-              20.0.heightBox,
+          20.heightBox,
 
-              ///Padding Extensions
-              ElevatedButton(
-                  onPressed: () {
-                    context.push(PaddingExample());
-                  },
-                  child: Text('Padding Example')),
+          ///Padding Extensions
+          ElevatedButton(
+              onPressed: () {
+                context.push(PaddingExample());
+              },
+              child: Text('Padding Example')),
 
-              20.0.heightBox,
+          20.heightBox,
 
-              ///Avatar
-              ElevatedButton(
-                  onPressed: () {
-                    context.push(AvatarExample());
-                  },
-                  child: Text('Avatar')),
+          ///Avatar
+          ElevatedButton(
+              onPressed: () {
+                context.push(AvatarExample());
+              },
+              child: Text('Avatar')),
 
-              20.0.heightBox,
+          20.heightBox,
 
-              ///Date Extensions
-              Text('${dateTime.isToday}'),
-              Text('${dateTime.isFirstDayOfMonth}'),
-              Text('${dateTime.isSameDay(dateTime)}'),
+          ///Date Extensions
+          Text('${dateTime.isToday}'),
+          Text('${dateTime.isFirstDayOfMonth}'),
+          Text('${dateTime.isSameDay(dateTime)}'),
+          Text('${dateTime.format('dd MMM yy - hh:mm a')}'),
 
-              ///Platform Extension
-              if (Ext.isWeb)
-                Text(
-                  'Hello World',
-                ).padAll(10.0),
+          ///Platform Extension
+          if (Ext.isWeb)
+            Text(
+              'Hello World',
+            ).padAll(10.0),
 
-              ///Show Platform dialog
-              ElevatedButton(
-                  onPressed: () {
-                    context.showAlertDialog(
-                        title: 'title',
-                        message: 'message',
-                        cancelButtonTitle: 'ok',
-                        cancelTitleColor: Colors.green,
-                        fontSize: 20);
-                  },
-                  child: Text('Show Dialog')),
+          ///Show Platform dialog
+          ElevatedButton(
+              onPressed: () {
+                context.showAlertDialog(
+                    title: 'title',
+                    message: 'message',
+                    cancelButtonTitle: 'ok',
+                    cancelTitleColor: Colors.green,
+                    fontSize: 20);
+              },
+              child: Text('Show Dialog')),
         ],
       ),
     );
