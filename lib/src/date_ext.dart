@@ -97,10 +97,13 @@ extension DateExtension on DateTime {
     return daysInRange(firstToDisplay, lastToDisplay).toList();
   }
 
+  /// Checks if `DateTime` is the first day of the month
   bool get isFirstDayOfMonth => isSameDay(firstDayOfMonth);
 
+  /// Checks if `DateTime` is the last day of the month
   bool get isLastDayOfMonth => isSameDay(lastDayOfMonth);
 
+  /// Returns `DateTime` of the first day of the month of `this`
   DateTime get firstDayOfMonth => DateTime(year, month);
 
   DateTime get firstDayOfWeek {
@@ -132,6 +135,7 @@ extension DateExtension on DateTime {
     return beginningNextMonth.subtract(const Duration(days: 1));
   }
 
+  /// Get exact `DateTime` of previous month
   DateTime get previousMonth {
     var year = this.year;
     var month = this.month;
@@ -144,6 +148,7 @@ extension DateExtension on DateTime {
     return DateTime(year, month);
   }
 
+  /// Get exact `DateTime` of coming month
   DateTime get nextMonth {
     var year = this.year;
     var month = this.month;
@@ -157,10 +162,13 @@ extension DateExtension on DateTime {
     return DateTime(year, month);
   }
 
+  /// Get exact `DateTime` of previous week
   DateTime get previousWeek => subtract(const Duration(days: 7));
 
+  /// Get exact `DateTime` of coming week
   DateTime get nextWeek => add(const Duration(days: 7));
 
+  /// Check if two `DateTime` are in the same week
   bool isSameWeek(DateTime b) {
     /// Handle Daylight Savings by setting hour to 12:00 Noon
     /// rather than the default of Midnight
@@ -183,6 +191,8 @@ extension DateExtension on DateTime {
   /// Example:
   ///
   /// DateTime.now().format("dd/MM/yyyy - hh:mm a") => 20/12/2023 - 08:00 PM
+  /// DateTime.now().format("dd MMM yyyy - hh:mm a") => 20 Dec 2023 - 08:00 PM
+  /// DateTime.now().format("dd MMMM yyyy - HH:mm") => 20 December 2023 - 20:00
   ///
   /// Formatting notations and their Meaning:
   ///
@@ -255,4 +265,57 @@ extension DateExtension on DateTime {
   /// HOUR_MINUTE_SECOND = 'jms';
   ///
   String format(String format) => DateFormat(format).format(this);
+
+  /// Get difference in Days
+  int diffDays(DateTime b) => this.difference(b).inDays;
+
+  /// Get difference in Hours
+  int diffHours(DateTime b) => this.difference(b).inHours;
+
+  /// Get difference in Minutes
+  int diffMinutes(DateTime b) => this.difference(b).inMinutes;
+
+  /// Get difference in Seconds
+  int diffSeconds(DateTime b) => this.difference(b).inSeconds;
+
+  /// Get difference between two `DateTime` in years, month and days
+  ///
+  /// If you want your string in y, m and d than pass true to `abbr`, by default its false.
+  ///
+  /// Example:
+  /// dateTime.diffYearsMonthsDays(DateTime.now().add(Duration(days: 500))) => 1 year 4 months 15 days
+  ///
+  /// dateTime.diffYearsMonthsDays(DateTime.now().add(Duration(days: 370)), abbr: true) => 1 y 5 d
+  ///
+  /// *This method provides an approximation and may not be entirely accurate, especially when dealing with leap years and months of varying lengths.
+  String diffYearsMonthsDays(DateTime b, {bool abbr = false}) {
+    final totalDays = this.diffDays(b).abs();
+    final years = totalDays ~/ 365;
+    final months = (totalDays % 365) ~/ 30;
+    final days = (totalDays % 365) % 30;
+    String res = '';
+
+    if (years != 0) {
+      if (abbr) {
+        res = res + "$years y ";
+      } else {
+        res = res + "$years ${years > 1 ? "years" : "year"} ";
+      }
+    }
+    if (months != 0) {
+      if (abbr) {
+        res = res + "$months m ";
+      } else {
+        res = res + "$months ${months > 1 ? "months" : "month"} ";
+      }
+    }
+    if (days != 0) {
+      if (abbr) {
+        res = res + "$days d";
+      } else {
+        res = res + "$days ${days > 1 ? "days" : "day"}";
+      }
+    }
+    return res;
+  }
 }

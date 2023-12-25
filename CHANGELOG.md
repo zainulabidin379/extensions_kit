@@ -1,3 +1,9 @@
+## 0.0.7
+
+- Added DateTime difference extensions
+- Updated Readme
+
+
 ## 0.0.6
 
 - Added Gap widget

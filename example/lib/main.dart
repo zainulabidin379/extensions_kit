@@ -1,10 +1,10 @@
 import 'package:extensions_kit/extensions_kit.dart';
 import 'package:flutter/material.dart';
 
-import './shimmer_example.dart';
-import './text_example.dart';
 import './avatar_example.dart';
 import './padding_example.dart';
+import './shimmer_example.dart';
+import './text_example.dart';
 import './widget_example.dart';
 
 void main() {
@@ -118,11 +118,18 @@ class _MyHomePageState extends State<MyHomePage> {
           Text('${dateTime.isFirstDayOfMonth}'),
           Text('${dateTime.isSameDay(dateTime)}'),
           Text('${dateTime.format('dd MMM yy - hh:mm a')}'),
+          Text(dateTime
+              .diffHours(DateTime.now().add(Duration(days: 5)))
+              .toString()),
+          Text(dateTime
+              .diffYearsMonthsDays(DateTime.now().add(Duration(days: 396)))),
+
+          20.heightBox,
 
           ///Platform Extension
           if (Ext.isWeb)
             Text(
-              'Hello World',
+              'This is Web',
             ).padAll(10.0),
 
           ///Show Platform dialog
@@ -137,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Show Dialog')),
         ],
-      ),
+      ).padHrz(20),
     );
   }
 }

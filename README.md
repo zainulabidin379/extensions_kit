@@ -157,13 +157,13 @@ DateTime(2023,12,16).addDays(5); // DateTime(2023,12,21)
 DateTime(2023,12,16,11,50,0).addHours(10); // DateTime(2023,12,16,21,50,0)
 
 /// The day After this [DateTime]
-DateTime(2017, 3, 5).nextDay; // return DateTime(2017, 3, 6)
+DateTime(2017, 3, 5).nextDay; // DateTime(2017, 3, 6)
 
 /// The day previous this [DateTime]
-DateTime(2017, 3, 5).previousDay; // return DateTime(2017, 3, 4)
+DateTime(2017, 3, 5).previousDay; // DateTime(2017, 3, 4)
 
 // First day of the month
-DateTime(2018, 9, 30).firstDayOfMonth; // returns DateTime(2018, 9, 1)
+DateTime(2018, 9, 30).firstDayOfMonth; // DateTime(2018, 9, 1)
 
 // Last day of the month
 DateTime(2017, 3).lastDayOfMonth; // DateTime(2017, 3, 31)
@@ -172,12 +172,33 @@ DateTime(2017, 3).lastDayOfMonth; // DateTime(2017, 3, 31)
 DateTime(2017, 3).daysInMonth; // [DateTime(2017, 3, 1), DateTime(2017, 3, 2), ...]
 
 // Whether or not two times are on the same day.
-DateTime.now().isSameDay(DateTime.now()); // returns true
+DateTime.now().isSameDay(DateTime.now()); // true
 
 // Whether or not two times are on the same week.
-DateTime(2017, 3, 5).isSameWeek(DateTime(2017, 3, 6));
+DateTime(2017, 3, 5).isSameWeek(DateTime(2017, 3, 6)); // true
 
 ```
+
+#### DateTime Difference
+
+```dart
+// Difference between two `DateTime` in years, month and days
+DateTime(2015, 1, 1).diffYearsMonthsDays(DateTime.now()) // 8 years 11 months 24 days
+DateTime(2015, 1, 1).diffYearsMonthsDays(DateTime.now(), abbr: true) // 8 y 11 m 24 d
+
+// Difference in Days
+DateTime(2017, 3, 5).diffDays(DateTime(2017, 3, 6)); // 1
+
+// Difference in Days
+DateTime(2017, 3, 5).diffHours(DateTime(2017, 3, 6)); // 24
+```
+
+Similar other available DateTime difference extensions are:
+* `diffDays()` Difference in Days.
+* `diffHours()` Difference in Hours.
+* `diffMinutes()` Difference in Minutes.
+* `diffSeconds()` Difference in Seconds.
+
 
 ## Navigation Extensions
 From the `Navigator` Access properties right in the `context` instance.
