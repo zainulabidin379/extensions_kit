@@ -1,6 +1,26 @@
-import 'package:intl/intl.dart';
+
 
 extension DateExtension on DateTime {
+  
+  // Constants for month names, month abbreviations, weekday names, and weekday abbreviations.
+  static const List<String> _monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ];
+
+  static const List<String> _monthAbbreviations = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+
+  static const List<String> _weekdayNames = [
+    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
+  ];
+
+  static const List<String> _weekdayAbbreviations = [
+    'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun',
+  ];
+  
   /// Returns a [DateTime] for each day the given range.
   ///
   /// [start] inclusive
@@ -186,85 +206,54 @@ extension DateExtension on DateTime {
     return result;
   }
 
-  /// Formats `DateTime` into readable form according to the given format
+  /// Formats the date and time according to the specified pattern.
   ///
-  /// Example:
+  /// The pattern can include various placeholders representing components
+  /// of the date and time, such as 'yyyy' for the year, 'MM' for the month,
+  /// and so on. See the documentation for a list of supported placeholders.
   ///
-  /// DateTime.now().format("dd/MM/yyyy - hh:mm a") => 20/12/2023 - 08:00 PM
-  /// DateTime.now().format("dd MMM yyyy - hh:mm a") => 20 Dec 2023 - 08:00 PM
-  /// DateTime.now().format("dd MMMM yyyy - HH:mm") => 20 December 2023 - 20:00
+  /// Example usage:
   ///
-  /// Formatting notations and their Meaning:
-  ///
-  /// ABBR_MONTH = 'MMM';
-  ///
-  /// DAY = 'd';
-  ///
-  /// ABBR_WEEKDAY = 'E';
-  ///
-  /// WEEKDAY = 'EEEE';
-  ///
-  /// ABBR_STANDALONE_MONTH = 'LLL';
-  ///
-  /// STANDALONE_MONTH = 'LLLL';
-  ///
-  /// NUM_MONTH = 'M';
-  ///
-  /// NUM_MONTH_DAY = 'Md';
-  ///
-  /// NUM_MONTH_WEEKDAY_DAY = 'MEd';
-  ///
-  /// ABBR_MONTH_DAY = 'MMMd';
-  ///
-  /// ABBR_MONTH_WEEKDAY_DAY = 'MMMEd';
-  ///
-  /// MONTH = 'MMMM';
-  ///
-  /// MONTH_DAY = 'MMMMd';
-  ///
-  /// MONTH_WEEKDAY_DAY = 'MMMMEEEEd';
-  ///
-  /// ABBR_QUARTER = 'QQQ';
-  ///
-  /// QUARTER = 'QQQQ';
-  ///
-  /// YEAR = 'y';
-  ///
-  /// YEAR_NUM_MONTH = 'yM';
-  ///
-  /// YEAR_NUM_MONTH_DAY = 'yMd';
-  ///
-  /// YEAR_NUM_MONTH_WEEKDAY_DAY = 'yMEd';
-  ///
-  /// YEAR_ABBR_MONTH = 'yMMM';
-  ///
-  /// YEAR_ABBR_MONTH_DAY = 'yMMMd';
-  ///
-  /// YEAR_ABBR_MONTH_WEEKDAY_DAY = 'yMMMEd';
-  ///
-  /// YEAR_MONTH = 'yMMMM';
-  ///
-  /// YEAR_MONTH_DAY = 'yMMMMd';
-  ///
-  /// YEAR_MONTH_WEEKDAY_DAY = 'yMMMMEEEEd';
-  ///
-  /// YEAR_ABBR_QUARTER = 'yQQQ';
-  ///
-  /// YEAR_QUARTER = 'yQQQQ';
-  ///
-  /// HOUR24 = 'H';
-  ///
-  /// HOUR24_MINUTE = 'Hm';
-  ///
-  /// HOUR24_MINUTE_SECOND = 'Hms';
-  ///
-  /// HOUR = 'j';
-  ///
-  /// HOUR_MINUTE = 'jm';
-  ///
-  /// HOUR_MINUTE_SECOND = 'jms';
-  ///
-  String format(String format) => DateFormat(format).format(this);
+  /// ```dart
+  /// DateTime now = DateTime.now();
+  /// print(now.format('yyyy-MM-dd – HH:mm'));      // Example 1
+  /// print(now.format('dd/MMM/yyyy hh:mm:ss a'));  // Example 2
+  /// print(now.format('EEEE, MMMM d, yyyy'));       // Example 3
+  /// ```
+  String format(String pattern) {
+    final Map<String, String> formatPlaceholders = {
+      'yyyy': this.year.toString(),
+      'yy': this.year.toString().substring(2),
+      'MMMM': _monthNames[this.month - 1],
+      'MMM': _monthAbbreviations[this.month - 1],
+      'MM': _twoDigits(this.month),
+      'M': this.month.toString(),
+      'dd': _twoDigits(this.day),
+      'd': this.day.toString(),
+      'HH': _twoDigits(this.hour),
+      'hh': _twoDigits(this.hour % 12),
+      'mm': _twoDigits(this.minute),
+      'ss': _twoDigits(this.second),
+      'a': this.hour < 12 ? 'AM' : 'PM',
+      'EEEE': _weekdayNames[this.weekday - 1],
+      'EEE': _weekdayAbbreviations[this.weekday - 1],
+    };
+
+    String result = pattern;
+    formatPlaceholders.forEach((placeholder, value) {
+      result = result.replaceAll(placeholder, value);
+    });
+
+    return result;
+  }
+
+  /// Adds a leading zero to a single-digit number to ensure it has two digits.
+  String _twoDigits(int n) {
+    if (n >= 10) {
+      return '$n';
+    }
+    return '0$n';
+  }
 
   /// Get difference in Days
   int diffDays(DateTime b) => this.difference(b).inDays;
