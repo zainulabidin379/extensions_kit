@@ -75,11 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               Text(
                 'Hello World',
-              ),
+              ).textColor(Ext.randomPrimaryColor),
               20.widthBox,
               Text(
                 'Hello World',
-              )
+              ).textColor(Ext.randomOpaqueColor)
             ],
           ),
 
@@ -119,8 +119,9 @@ class _MyHomePageState extends State<MyHomePage> {
           Text('${dateTime.isSameDay(dateTime)}'),
           Text('${dateTime.format('dd MMM yy - hh:mm a')}'),
           Text(dateTime
-              .diffHours(DateTime.now().add(Duration(days: 5)))
-              .toString()),
+                  .diffHours(DateTime.now().add(Duration(days: 5)))
+                  .toString())
+              .textColor(Ext.red600),
           Text(dateTime
               .diffYearsMonthsDays(DateTime.now().add(Duration(days: 396)))),
 

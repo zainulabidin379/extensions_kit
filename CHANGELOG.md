@@ -1,3 +1,9 @@
+## 0.0.8
+
+- Downgraded intl to 0.18.0
+- Updated Readme
+
+
 ## 0.0.7
 
 - Added DateTime difference extensions

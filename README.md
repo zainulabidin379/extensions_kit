@@ -28,6 +28,7 @@ Available Extensions & Methods 🔥
   - [Navigation Extensions](#navigation-extensions)
   - [Number Extensions](#number-extensions)
   - [Widget Extensions](#widget-extensions)
+  - [Colors](#colors)
   - [Gap Widget](#gap-widget)
   - [Url Strategy](#url-strategy)
   - [Avatar Image](#avatar-image)
@@ -93,6 +94,9 @@ Available Extensions & Methods 🔥
 
 // Check if the String matches the Regular expression
 "username_10".hasMatch("r'[abcdefghijklmnopqrstuvwxyz1234567890._]"); // true
+
+// Copy a string to Clipboard
+Ext.copy("Hello World"); // `Hello World` copied to clipboard
 ```
 
 ## Media Query Extensions
@@ -442,6 +446,31 @@ text != null ? Text(text) : nil
 or
 text != null ? Text(text) : const Nil()
 ```
+
+
+## Colors
+This package includes a comprehensive collection of predefined colors and methods, empowering you to effortlessly enhance the visual appeal of your Flutter applications.
+
+```dart
+Ext.black; // Color(0xFF000000)
+Ext.transparent; // Colors.transparent;
+
+Ext.red500; // Color(0xFFEF4444);
+Ext.redHex500; // #EF4444
+
+// Convert a hex color string to a [Color]
+Ext.hexToColor("EF4444"); // Color(0xFFEF4444)
+
+// Get [MaterialColor] from [Color]
+Ext.getMaterialColor(Ext.red800); // Red Material Color
+
+// Get Random Colors
+Ext.randomOpaqueColor; // Random Opaque Color
+Ext.randomPrimaryColor; // Random Primary Color
+Ext.randomColor; // Random Color
+```
+
+
 
 ## Gap Widget
 
