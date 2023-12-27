@@ -6,7 +6,7 @@ extension WidgetExtensions on Widget {
   /// Will [Unfocus] any focused textfield
   ///
   /// It's better to use it on main parent widget of the screen e.g. [Scaffold]
-  GestureDetector unfocus(BuildContext context) => GestureDetector(
+  GestureDetector unFocus(BuildContext context) => GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: this,
       );
