@@ -111,7 +111,31 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Avatar')),
 
-          20.heightBox,
+          const Gap(20),
+
+          /// Snackbar
+          ElevatedButton(
+              onPressed: () {
+                Ext.showMessageSnackbar("This is a message Snackbar", context);
+              },
+              child: Text('Show Message Snackbar')),
+          const Gap(10),
+
+          /// Snackbar
+          ElevatedButton(
+              onPressed: () {
+                Ext.showErrorSnackbar("This is an Error Snackbar", context);
+              },
+              child: Text('Show Error Snackbar')),
+          const Gap(10),
+
+          /// Snackbar
+          ElevatedButton(
+              onPressed: () {
+                Ext.showInfoSnackbar("This is an info Snackbar", context);
+              },
+              child: Text('Show Info Snackbar')),
+          const Gap(20),
 
           ///Date Extensions
           Text('${dateTime.isToday}'),

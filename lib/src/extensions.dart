@@ -3,6 +3,9 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/safe_area_values.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 mixin Ext {
   /// Pixel Values
@@ -592,15 +595,49 @@ mixin Ext {
           defaultTargetPlatform == TargetPlatform.macOS ||
           defaultTargetPlatform == TargetPlatform.windows);
 
-  /// Get color from the hex value
+  /// Converts a hexadecimal color code to a corresponding [Color] object.
+  ///
+  /// The input [String] can be either a 6-digit RGB code or a 7-digit RGBA code,
+  /// where the optional alpha channel is represented by the first two characters.
+  ///
+  /// [code] - The hexadecimal color code to be converted to a [Color].
+  ///
+  /// Returns a [Color] object based on the provided hexadecimal color code.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// String hexCode = "#FF5733";
+  /// Color myColor = Ext.hexToColor(hexCode);
+  /// ```
   static Color hexToColor(String code) {
     final buffer = StringBuffer();
-    if (code.length == 6 || code.length == 7) buffer.write('ff');
+
+    // Check if the code has 6 or 7 characters, and append 'ff' for alpha if needed
+    if (code.length == 6 || code.length == 7) {
+      buffer.write('ff');
+    }
+
+    // Remove '#' and append the remaining code to the buffer
     buffer.write(code.replaceFirst('#', ''));
+
+    // Parse the buffer as an integer in base 16 to obtain the color value
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 
-  /// Get [MaterialColor] from [Color]
+  /// Converts a given [Color] to a corresponding [MaterialColor].
+  ///
+  /// The [MaterialColor] is a swatch of ten different shades of the provided color,
+  /// ranging from 10% opacity to 100% opacity.
+  ///
+  /// [color] - The color for which the [MaterialColor] is to be generated.
+  ///
+  /// Returns a [MaterialColor] swatch based on the provided color.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// Color myColor = Colors.blue;
+  /// MaterialColor myMaterialColor = MyClass.getMaterialColor(myColor);
+  /// ```
   static MaterialColor getMaterialColor(Color color) {
     final int red = color.red;
     final int green = color.green;
@@ -622,19 +659,462 @@ mixin Ext {
     return MaterialColor(color.value, shades);
   }
 
-  /// Get Random Non-Primary Color
+  /// Generates a random opaque color with a fully opaque alpha value.
+  ///
+  /// The generated color has a completely opaque alpha value of 255 (0xff).
+  ///
+  /// Example usage:
+  /// ```dart
+  /// Color myRandomOpaqueColor = Ext.randomOpaqueColor;
+  /// ```
   static Color get randomOpaqueColor =>
       Color(Random().nextInt(0xffffffff)).withAlpha(0xff);
 
-  /// Get Random Primary Color
+  /// Generates a random primary color by selecting a random color from the list of
+  /// primary colors provided by the Flutter framework.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// Color myRandomPrimaryColor = Ext.randomPrimaryColor;
+  /// ```
   static Color get randomPrimaryColor =>
       Colors.primaries[Random().nextInt(Colors.primaries.length)];
 
-  /// Get Random Non-Primary Color
+  /// Generates a random color with random RGB values and a constant alpha value.
+  ///
+  /// The generated color is semi-transparent with an alpha value of 100.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// Color myRandomColor = Ext.randomColor;
+  /// ```
   static Color get randomColor => Color.fromARGB(
       100, Random().nextInt(255), Random().nextInt(255), Random().nextInt(255));
 
-  /// Copy to Clipboard
+  /// Copies the provided [String] to the device clipboard.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// await Ext.copy("Hello, Clipboard!");
+  /// ```
   static Future<void> copy(String data) async =>
       await Clipboard.setData(ClipboardData(text: data));
+
+  /// A utility method for showing a success Snackbar with customizable options.
+  ///
+  /// [message] - The success message to be displayed.
+  ///
+  /// [context] - The BuildContext in which the Snackbar will be shown.
+  ///
+  /// [animationDuration] - The duration of the show animation.
+  ///
+  /// [reverseAnimationDuration] - The duration of the reverse (hide) animation.
+  ///
+  /// [displayDuration] - The duration for which the Snackbar will be displayed.
+  ///
+  /// [onTap] - A callback function to be invoked when the Snackbar is tapped.
+  ///
+  /// [persistent] - A flag indicating whether the Snackbar should persist until manually dismissed.
+  ///
+  /// [onAnimationControllerInit] - A callback function for initializing the AnimationController.
+  ///
+  /// [padding] - Padding around the content of the Snackbar.
+  ///
+  /// [curve] - The curve for the show animation.
+  ///
+  /// [reverseCurve] - The curve for the reverse (hide) animation.
+  ///
+  /// [safeAreaValues] - Values for safe area insets.
+  ///
+  /// [dismissType] - Type of dismissal action (e.g., onSwipe).
+  ///
+  /// [snackBarPosition] - Position of the Snackbar (e.g., top).
+  ///
+  /// [dismissDirection] - List of directions in which the Snackbar can be dismissed.
+  ///
+  /// [messagePadding] - Padding around the success message.
+  ///
+  /// [icon] - The icon widget to be displayed in the Snackbar.
+  ///
+  /// [textStyle] - The style of the success message text.
+  ///
+  /// [maxLines] - The maximum number of lines for the success message.
+  ///
+  /// [iconRotationAngle] - The rotation angle for the icon.
+  ///
+  /// [iconPositionTop] - The top position of the icon within the Snackbar.
+  ///
+  /// [iconPositionLeft] - The left position of the icon within the Snackbar.
+  ///
+  /// [backgroundColor] - The background color of the Snackbar.
+  ///
+  /// [boxShadow] - List of box shadows applied to the Snackbar.
+  ///
+  /// [borderRadius] - The border radius of the Snackbar.
+  ///
+  /// [textScaleFactor] - The text scale factor for the success message.
+  ///
+  /// [textAlign] - The alignment of the success message text.
+  ///
+  /// Returns a reference to the displayed Snackbar.
+  static showMessageSnackbar(
+    String message,
+    BuildContext context, {
+    Duration animationDuration = const Duration(milliseconds: 1200),
+    Duration reverseAnimationDuration = const Duration(milliseconds: 550),
+    Duration displayDuration = const Duration(milliseconds: 3000),
+    void Function()? onTap,
+    bool persistent = false,
+    void Function(AnimationController)? onAnimationControllerInit,
+    EdgeInsets padding = const EdgeInsets.all(16),
+    Curve curve = Curves.elasticOut,
+    Curve reverseCurve = Curves.linearToEaseOut,
+    SafeAreaValues safeAreaValues = const SafeAreaValues(),
+    DismissType dismissType = DismissType.onSwipe,
+    SnackBarPosition snackBarPosition = SnackBarPosition.top,
+    List<DismissDirection> dismissDirection = const [
+      DismissDirection.up,
+      DismissDirection.horizontal
+    ],
+    EdgeInsetsGeometry messagePadding =
+        const EdgeInsets.symmetric(horizontal: 18),
+    Widget icon = const Icon(Icons.sentiment_satisfied_alt,
+        color: Color(0x15000000), size: 120),
+    TextStyle textStyle = const TextStyle(
+        fontWeight: FontWeight.w600, fontSize: 16, color: Colors.white),
+    int maxLines = 2,
+    int iconRotationAngle = 32,
+    double iconPositionTop = -10,
+    double iconPositionLeft = -8,
+    Color backgroundColor = const Color(0xFF31A586),
+    List<BoxShadow> boxShadow = kDefaultBoxShadow,
+    BorderRadius borderRadius = kDefaultBorderRadius,
+    double textScaleFactor = 1.0,
+    TextAlign textAlign = TextAlign.center,
+  }) {
+    return showTopSnackBar(
+      Overlay.of(context),
+      CustomSnackBar.success(
+        message: message,
+        messagePadding: messagePadding,
+        icon: icon,
+        textStyle: textStyle,
+        maxLines: maxLines,
+        iconPositionLeft: iconPositionLeft,
+        iconPositionTop: iconPositionTop,
+        iconRotationAngle: iconRotationAngle,
+        backgroundColor: backgroundColor,
+        boxShadow: boxShadow,
+        borderRadius: borderRadius,
+        textScaleFactor: textScaleFactor,
+        textAlign: textAlign,
+      ),
+      animationDuration: animationDuration,
+      reverseAnimationDuration: reverseAnimationDuration,
+      displayDuration: displayDuration,
+      onTap: onTap,
+      persistent: persistent,
+      onAnimationControllerInit: onAnimationControllerInit,
+      padding: padding,
+      curve: curve,
+      reverseCurve: reverseCurve,
+      safeAreaValues: safeAreaValues,
+      dismissType: dismissType,
+      snackBarPosition: snackBarPosition,
+      dismissDirection: dismissDirection,
+    );
+  }
+
+  /// A utility method for showing an error Snackbar with customizable options.
+  ///
+  /// [message] - The error message to be displayed.
+  ///
+  /// [context] - The BuildContext in which the Snackbar will be shown.
+  ///
+  /// [animationDuration] - The duration of the show animation.
+  ///
+  /// [reverseAnimationDuration] - The duration of the reverse (hide) animation.
+  ///
+  /// [displayDuration] - The duration for which the Snackbar will be displayed.
+  ///
+  /// [onTap] - A callback function to be invoked when the Snackbar is tapped.
+  ///
+  /// [persistent] - A flag indicating whether the Snackbar should persist until manually dismissed.
+  ///
+  /// [onAnimationControllerInit] - A callback function for initializing the AnimationController.
+  ///
+  /// [padding] - Padding around the content of the Snackbar.
+  ///
+  /// [curve] - The curve for the show animation.
+  ///
+  /// [reverseCurve] - The curve for the reverse (hide) animation.
+  ///
+  /// [safeAreaValues] - Values for safe area insets.
+  ///
+  /// [dismissType] - Type of dismissal action (e.g., onSwipe).
+  ///
+  /// [snackBarPosition] - Position of the Snackbar (e.g., top).
+  ///
+  /// [dismissDirection] - List of directions in which the Snackbar can be dismissed.
+  ///
+  /// [messagePadding] - Padding around the error message.
+  ///
+  /// [icon] - The icon widget to be displayed in the Snackbar.
+  ///
+  /// [textStyle] - The style of the error message text.
+  ///
+  /// [maxLines] - The maximum number of lines for the error message.
+  ///
+  /// [iconRotationAngle] - The rotation angle for the icon.
+  ///
+  /// [iconPositionTop] - The top position of the icon within the Snackbar.
+  ///
+  /// [iconPositionLeft] - The left position of the icon within the Snackbar.
+  ///
+  /// [backgroundColor] - The background color of the Snackbar.
+  ///
+  /// [boxShadow] - List of box shadows applied to the Snackbar.
+  ///
+  /// [borderRadius] - The border radius of the Snackbar.
+  ///
+  /// [textScaleFactor] - The text scale factor for the error message.
+  ///
+  /// [textAlign] - The alignment of the error message text.
+  ///
+  /// Returns a reference to the displayed Snackbar.
+  static showErrorSnackbar(
+    String message,
+    BuildContext context, {
+    Duration animationDuration = const Duration(milliseconds: 1200),
+    Duration reverseAnimationDuration = const Duration(milliseconds: 550),
+    Duration displayDuration = const Duration(milliseconds: 3000),
+    void Function()? onTap,
+    bool persistent = false,
+    void Function(AnimationController)? onAnimationControllerInit,
+    EdgeInsets padding = const EdgeInsets.all(16),
+    Curve curve = Curves.elasticOut,
+    Curve reverseCurve = Curves.linearToEaseOut,
+    SafeAreaValues safeAreaValues = const SafeAreaValues(),
+    DismissType dismissType = DismissType.onSwipe,
+    SnackBarPosition snackBarPosition = SnackBarPosition.top,
+    List<DismissDirection> dismissDirection = const [
+      DismissDirection.up,
+      DismissDirection.horizontal
+    ],
+    EdgeInsetsGeometry messagePadding =
+        const EdgeInsets.symmetric(horizontal: 18),
+    Widget icon =
+        const Icon(Icons.error_outline, color: Color(0x15000000), size: 120),
+    TextStyle textStyle = const TextStyle(
+        fontWeight: FontWeight.w600, fontSize: 16, color: Colors.white),
+    int maxLines = 2,
+    int iconRotationAngle = 32,
+    double iconPositionTop = -10,
+    double iconPositionLeft = -8,
+    Color backgroundColor = const Color(0xffff5252),
+    List<BoxShadow> boxShadow = kDefaultBoxShadow,
+    BorderRadius borderRadius = kDefaultBorderRadius,
+    double textScaleFactor = 1.0,
+    TextAlign textAlign = TextAlign.center,
+  }) {
+    return showTopSnackBar(
+      Overlay.of(context),
+      CustomSnackBar.error(
+        message: message,
+        messagePadding: messagePadding,
+        icon: icon,
+        textStyle: textStyle,
+        maxLines: maxLines,
+        iconPositionLeft: iconPositionLeft,
+        iconPositionTop: iconPositionTop,
+        iconRotationAngle: iconRotationAngle,
+        backgroundColor: backgroundColor,
+        boxShadow: boxShadow,
+        borderRadius: borderRadius,
+        textScaleFactor: textScaleFactor,
+        textAlign: textAlign,
+      ),
+      animationDuration: animationDuration,
+      reverseAnimationDuration: reverseAnimationDuration,
+      displayDuration: displayDuration,
+      onTap: onTap,
+      persistent: persistent,
+      onAnimationControllerInit: onAnimationControllerInit,
+      padding: padding,
+      curve: curve,
+      reverseCurve: reverseCurve,
+      safeAreaValues: safeAreaValues,
+      dismissType: dismissType,
+      snackBarPosition: snackBarPosition,
+      dismissDirection: dismissDirection,
+    );
+  }
+
+  /// A utility method for showing an information Snackbar with customizable options.
+  ///
+  /// [message] - The information message to be displayed.
+  ///
+  /// [context] - The BuildContext in which the Snackbar will be shown.
+  ///
+  /// [animationDuration] - The duration of the show animation.
+  ///
+  /// [reverseAnimationDuration] - The duration of the reverse (hide) animation.
+  ///
+  /// [displayDuration] - The duration for which the Snackbar will be displayed.
+  ///
+  /// [onTap] - A callback function to be invoked when the Snackbar is tapped.
+  ///
+  /// [persistent] - A flag indicating whether the Snackbar should persist until manually dismissed.
+  ///
+  /// [onAnimationControllerInit] - A callback function for initializing the AnimationController.
+  ///
+  /// [padding] - Padding around the content of the Snackbar.
+  ///
+  /// [curve] - The curve for the show animation.
+  ///
+  /// [reverseCurve] - The curve for the reverse (hide) animation.
+  ///
+  /// [safeAreaValues] - Values for safe area insets.
+  ///
+  /// [dismissType] - Type of dismissal action (e.g., onSwipe).
+  ///
+  /// [snackBarPosition] - Position of the Snackbar (e.g., top).
+  ///
+  /// [dismissDirection] - List of directions in which the Snackbar can be dismissed.
+  ///
+  /// [messagePadding] - Padding around the information message.
+  ///
+  /// [icon] - The icon widget to be displayed in the Snackbar.
+  ///
+  /// [textStyle] - The style of the information message text.
+  ///
+  /// [maxLines] - The maximum number of lines for the information message.
+  ///
+  /// [iconRotationAngle] - The rotation angle for the icon.
+  ///
+  /// [iconPositionTop] - The top position of the icon within the Snackbar.
+  ///
+  /// [iconPositionLeft] - The left position of the icon within the Snackbar.
+  ///
+  /// [backgroundColor] - The background color of the Snackbar.
+  ///
+  /// [boxShadow] - List of box shadows applied to the Snackbar.
+  ///
+  /// [borderRadius] - The border radius of the Snackbar.
+  ///
+  /// [textScaleFactor] - The text scale factor for the information message.
+  ///
+  /// [textAlign] - The alignment of the information message text.
+  ///
+  /// Returns a reference to the displayed Snackbar.
+  static showInfoSnackbar(
+    String message,
+    BuildContext context, {
+    Duration animationDuration = const Duration(milliseconds: 1200),
+    Duration reverseAnimationDuration = const Duration(milliseconds: 550),
+    Duration displayDuration = const Duration(milliseconds: 3000),
+    void Function()? onTap,
+    bool persistent = false,
+    void Function(AnimationController)? onAnimationControllerInit,
+    EdgeInsets padding = const EdgeInsets.all(16),
+    Curve curve = Curves.elasticOut,
+    Curve reverseCurve = Curves.linearToEaseOut,
+    SafeAreaValues safeAreaValues = const SafeAreaValues(),
+    DismissType dismissType = DismissType.onSwipe,
+    SnackBarPosition snackBarPosition = SnackBarPosition.top,
+    List<DismissDirection> dismissDirection = const [
+      DismissDirection.up,
+      DismissDirection.horizontal
+    ],
+    EdgeInsetsGeometry messagePadding =
+        const EdgeInsets.symmetric(horizontal: 18),
+    Widget icon = const Icon(Icons.sentiment_neutral,
+        color: Color(0x15000000), size: 120),
+    TextStyle textStyle = const TextStyle(
+        fontWeight: FontWeight.w600, fontSize: 16, color: Colors.white),
+    int maxLines = 2,
+    int iconRotationAngle = 32,
+    double iconPositionTop = -10,
+    double iconPositionLeft = -8,
+    Color backgroundColor = const Color(0xff2196F3),
+    List<BoxShadow> boxShadow = kDefaultBoxShadow,
+    BorderRadius borderRadius = kDefaultBorderRadius,
+    double textScaleFactor = 1.0,
+    TextAlign textAlign = TextAlign.center,
+  }) {
+    return showTopSnackBar(
+      Overlay.of(context),
+      CustomSnackBar.info(
+        message: message,
+        messagePadding: messagePadding,
+        icon: icon,
+        textStyle: textStyle,
+        maxLines: maxLines,
+        iconPositionLeft: iconPositionLeft,
+        iconPositionTop: iconPositionTop,
+        iconRotationAngle: iconRotationAngle,
+        backgroundColor: backgroundColor,
+        boxShadow: boxShadow,
+        borderRadius: borderRadius,
+        textScaleFactor: textScaleFactor,
+        textAlign: textAlign,
+      ),
+      animationDuration: animationDuration,
+      reverseAnimationDuration: reverseAnimationDuration,
+      displayDuration: displayDuration,
+      onTap: onTap,
+      persistent: persistent,
+      onAnimationControllerInit: onAnimationControllerInit,
+      padding: padding,
+      curve: curve,
+      reverseCurve: reverseCurve,
+      safeAreaValues: safeAreaValues,
+      dismissType: dismissType,
+      snackBarPosition: snackBarPosition,
+      dismissDirection: dismissDirection,
+    );
+  }
+
+  /// Calculates the great-circle distance between two geographic coordinates
+  /// using the Haversine formula.
+  ///
+  /// The input coordinates are specified in decimal degrees format.
+  ///
+  /// [lat1] - Latitude of the first point.
+  ///
+  /// [lng1] - Longitude of the first point.
+  ///
+  /// [lat2] - Latitude of the second point.
+  ///
+  /// [lng2] - Longitude of the second point.
+  ///
+  /// Returns the distance between the two points in kilometers.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// double distance = Ext.getDistanceFromCoordinates(37.7749, -122.4194, 34.0522, -118.2437);
+  /// ```
+  static double getDistanceFromCoordinates(
+      double lat1, double lng1, double lat2, double lng2) {
+    var R = 6371; // Radius of the earth in kilometers
+    var dLat = deg2rad(lat2 - lat1); // Convert latitude difference to radians
+    var dLon = deg2rad(lng2 - lng1); // Convert longitude difference to radians
+
+    // Haversine formula
+    var a = sin(dLat / 2) * sin(dLat / 2) +
+        cos(deg2rad(lat1)) * cos(deg2rad(lat2)) * sin(dLon / 2) * sin(dLon / 2);
+    var c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+    var d = R * c; // Distance in kilometers
+    return d;
+  }
+
+  /// Converts degrees to radians.
+  ///
+  /// [deg] - The angle in degrees to be converted to radians.
+  ///
+  /// Returns the angle in radians.
+  static double deg2rad(deg) {
+    return deg * (pi / 180);
+  }
 }
