@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Extensions for navigation on the [BuildContext].
 extension NavigatorExt on BuildContext {
   ///  just call this [canPop()] method and it would return true if this route can be popped and false if it’s not possible.
   bool canPop() => Navigator.canPop(this);

@@ -1,7 +1,7 @@
 name: extensions_kit
 description: An essential and powerful library of dart extensions to remove the
   boilerplate and speed up the development process.
-version: 0.0.8
+version: 0.0.9
 homepage: https://github.com/zainulabidin379/extensions_kit
 repository: https://github.com/zainulabidin379/extensions_kit
 
@@ -14,7 +14,6 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  intl: ^0.18.0
   top_snackbar_flutter: ^3.1.0
 
 dev_dependencies:

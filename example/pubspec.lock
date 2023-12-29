@@ -79,14 +79,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.18.1"
   matcher:
     dependency: transitive
     description:
@@ -172,6 +164,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.1"
+  top_snackbar_flutter:
+    dependency: transitive
+    description:
+      name: top_snackbar_flutter
+      sha256: "22d14664a13db6ac714934c3382bd8d4daa57fb888a672f922df71981c5a5cb2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   vector_math:
     dependency: transitive
     description:

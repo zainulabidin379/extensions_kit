@@ -2,6 +2,7 @@ import 'package:extensions_kit/extensions_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/// Extensions for adding additional functionality to the [BuildContext].
 extension ContextExtensions on BuildContext {
   /// Get X percent of Height of a screen
   double h(double height) => height * MediaQuery.of(this).size.height / 100;
@@ -21,6 +22,38 @@ extension ContextExtensions on BuildContext {
   /// Indicates whether the app is in light mode
   bool get isLightMode => Theme.of(this).brightness == Brightness.light;
 
+  /// Displays an alert dialog based on the platform (iOS or Android).
+  ///
+  /// [title] - The title of the alert dialog.
+  ///
+  /// [message] - The message content of the alert dialog.
+  ///
+  /// [positiveButtonsTitle] - List of titles for positive buttons.
+  ///
+  /// [cancelButtonTitle] - Title for the cancel button.
+  ///
+  /// [onDone] - Callback function invoked when a button is pressed. The parameter
+  /// represents the index of the pressed button.
+  ///
+  /// [positiveTitleColor] - Text color for positive buttons.
+  ///
+  /// [cancelTitleColor] - Text color for the cancel button.
+  ///
+  /// [fontSize] - Font size for the button titles.
+  ///
+  /// [barrierDismissible] - Whether the dialog can be dismissed by tapping outside.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// showAlertDialog(
+  ///   title: "Alert",
+  ///   message: "This is an alert message.",
+  ///   positiveButtonsTitle: ["OK"],
+  ///   onDone: (index) {
+  ///     print("Button pressed at index $index");
+  ///   },
+  /// );
+  /// ```
   void showAlertDialog({
     required String title,
     required String message,
@@ -34,7 +67,7 @@ extension ContextExtensions on BuildContext {
   }) {
     // Check the platform
     if (Ext.isIOS) {
-      // show cupertino dialog
+      // Show Cupertino dialog
       _showIOSDialog(
         this,
         title,
@@ -48,7 +81,7 @@ extension ContextExtensions on BuildContext {
         barrierDismissible,
       );
     } else {
-      // show material dialog
+      // Show Material dialog
       _showAndroidDialog(
         this,
         title,
@@ -64,17 +97,19 @@ extension ContextExtensions on BuildContext {
     }
   }
 
+  /// Displays an iOS-style alert dialog.
   void _showIOSDialog(
-      BuildContext context,
-      String title,
-      String message,
-      List<String>? buttons,
-      String? cancelButton,
-      Function(int)? onDone,
-      Color? positiveTitleColor,
-      Color? cancelTitleColor,
-      double? fontSize,
-      bool barrierDismissible) {
+    BuildContext context,
+    String title,
+    String message,
+    List<String>? buttons,
+    String? cancelButton,
+    Function(int)? onDone,
+    Color? positiveTitleColor,
+    Color? cancelTitleColor,
+    double? fontSize,
+    bool barrierDismissible,
+  ) {
     List<Widget> arrWidget = [];
 
     if (cancelButton != null) {
@@ -108,29 +143,31 @@ extension ContextExtensions on BuildContext {
     }
 
     showDialog(
-        barrierDismissible: barrierDismissible,
-        context: context,
-        builder: (BuildContext context) {
-          return CupertinoAlertDialog(
-            title: Text(title),
-            content: Text(message),
-            actions: arrWidget,
-          );
-        });
+      barrierDismissible: barrierDismissible,
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: arrWidget,
+        );
+      },
+    );
   }
 
+  /// Displays an Android-style alert dialog.
   void _showAndroidDialog(
-      BuildContext context,
-      String title,
-      String message,
-      List<String>? buttons,
-      String? cancelButton,
-      Function(int)? onDone,
-      Color? positiveTitleColor,
-      Color? cancelTitleColor,
-      double? fontSize,
-      bool barrierDismissible) {
-    // flutter defined function
+    BuildContext context,
+    String title,
+    String message,
+    List<String>? buttons,
+    String? cancelButton,
+    Function(int)? onDone,
+    Color? positiveTitleColor,
+    Color? cancelTitleColor,
+    double? fontSize,
+    bool barrierDismissible,
+  ) {
     List<Widget> arrWidget = [];
 
     if (cancelButton != null) {
@@ -176,16 +213,17 @@ extension ContextExtensions on BuildContext {
     }
 
     showDialog(
-        barrierDismissible: barrierDismissible,
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            title: Text(title),
-            content: Text(message),
-            actions: arrWidget,
-          );
-        });
+      barrierDismissible: barrierDismissible,
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          title: Text(title),
+          content: Text(message),
+          actions: arrWidget,
+        );
+      },
+    );
   }
 }

@@ -30,9 +30,11 @@ Available Extensions & Methods 🔥
   - [Widget Extensions](#widget-extensions)
   - [Colors](#colors)
   - [Gap Widget](#gap-widget)
+  - [Text Style Extensions](#text-style-extensions)
   - [Url Strategy](#url-strategy)
   - [Avatar Image](#avatar-image)
-  - [Text Style Extensions](#text-style-extensions)
+  - [Distance Between Coordinates](#distance-between-coordinates)
+  - [Snackbar](#snackbar)
   - [Support](#support)
   - [Acknowledgments and References](#acknowledgments-and-references)
   - [Bugs or Feature Requests](#bugs-or-feature-requests)
@@ -244,13 +246,6 @@ context.popUntil('/login', rootNavigator: true);
 1.ordinal; // 1st
 3.ordinal/ // 3rd
 234.ordinal; // 234th
-
-// Get a string with comma separator like `1,233,15` if the String is '123315'
-1234.currency; // 1,234
-142343.currency; // 142,343
-
-// You can also specify your pattern
-142343.currencyWithPattern("#,##,###"); // 1,42,343
 
 // Check if the number is between the given numbers
 45.between(40,60); // true
@@ -611,6 +606,27 @@ AvatarImage(
 | shape           | shape of the avatar i.e, `AvatarImageShape.standard`, `AvatarImageShape.circle`, `AvatarImageShape.square` |
 | borderRadius    | extra radius to avatar shapes, not applicable to circular avatar                                           |
 
+
+## Distance Between Coordinates
+
+Calculates the great-circle distance in Kilometers between two geographic coordinates using the Haversine formula.
+```dart
+double distance = Ext.getDistanceFromCoordinates(37.7749, -122.4194, 34.0522, -118.2437);
+```
+
+
+## Snackbar
+
+Utility methods for showing a Snackbar with customizable options.
+```dart
+Ext.showMessageSnackbar("This is a message Snackbar", context); // Message Snackbar
+
+Ext.showErrorSnackbar("This is an Error Snackbar", context); // Error Snackbar
+
+Ext.showInfoSnackbar("This is an info Snackbar", context); // Info Snackbar
+```
+
+
 ## Support
 If this package helped you please leave a like and share it with your friends.
 
@@ -618,6 +634,7 @@ If this package helped you please leave a like and share it with your friends.
 ## Acknowledgments and References
 - A lot of extension from [Awesome Extensions](https://pub.dev/packages/awesome_extensions) By [Jayesh Pansheriya](https://github.com/jayeshpansheriya/awesome_extensions)
 - [Gap](https://pub.dev/packages/gap) By [Romain Rastel](https://github.com/letsar/gap)
+- [top_snackbar_flutter](https://pub.dev/packages/top_snackbar_flutter) by [Lanars](https://lanars.com/)
 
 ## Bugs or Feature Requests
 If you encounter any problems feel free to open an [issue](https://github.com/zainulabidin379/extensions_kit/issues/new?template=bug_report.md). If you feel the library is missing a feature, please raise a [ticket](https://github.com/zainulabidin379/extensions_kit/issues/new?template=feature_request.md). Pull requests are also welcomed.

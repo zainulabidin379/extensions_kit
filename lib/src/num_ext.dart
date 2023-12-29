@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart' as intl;
 
+/// Extensions for adding additional functionality to the [num].
 extension NumberExtensions on num {
   /// Converts [int] into English ordinal representation
   /// ```
@@ -22,29 +22,6 @@ extension NumberExtensions on num {
         }
     };
   }
-
-  /// Returns a string with comma separator like `1,233,15` if the String is '123315'.
-  /// ```
-  /// print(1234.currency); // 1,234
-  /// print(23242342.currency); // 23,242,342
-  /// print(142343.currency); // 142,343
-  /// print(3242340.currency); // 3,242,340
-  /// print(145.currency); // 145
-  /// print(1520.currency); // 1,520
-  /// ```
-  String get currency => intl.NumberFormat.currency(customPattern: "#,###,000")
-      .format(this)
-      .toString();
-
-  /// Returns a string with your custom pattern.
-  /// ```
-  /// print(123456.currencyWithPattern("#,###,000")); // 123,456
-  /// print(123456.currencyWithPattern("#,##,000")); // 1,23,456
-  /// ```
-  String currencyWithPattern(String? pattern) =>
-      intl.NumberFormat.currency(customPattern: pattern ?? "#,###,000")
-          .format(this)
-          .toString();
 
   /// Returns `true` if `this` is between the given [min] (inclusive) and [max] (exclusive).
   bool between(num min, num max) {

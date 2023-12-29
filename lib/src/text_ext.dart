@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Extensions for accessing functionality of the [Text] widget.
 extension StyledText<T extends Text> on T {
   Text copyWith({
     String? data,

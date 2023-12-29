@@ -1,3 +1,14 @@
+## 0.0.9
+
+- Removed intl dependency
+- Updated date formatting methods
+- Changed `unfocus` method to `unFocus`
+- Added Distance calculator b/w two coordinates
+- Added snackbar
+- Updated example project with new added extension & methods
+- Updated Readme
+
+
 ## 0.0.8
 
 - Downgraded intl to 0.18.0

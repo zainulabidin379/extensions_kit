@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Create Avatar of all types i,e, square, circle, standard with different sizes.
 class AvatarImage extends StatelessWidget {
-  /// Create Avatar of all types i,e, square, circle, standard with different sizes.
   const AvatarImage(
       {Key? key,
       this.child,

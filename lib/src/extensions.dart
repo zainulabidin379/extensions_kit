@@ -7,6 +7,7 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/safe_area_values.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+/// A mixin with additional functionality.
 mixin Ext {
   /// Pixel Values
   static const double dp10 = 10.0;
@@ -1088,7 +1089,7 @@ mixin Ext {
   ///
   /// [lng2] - Longitude of the second point.
   ///
-  /// Returns the distance between the two points in kilometers.
+  /// *Returns the distance between the two points in kilometers.
   ///
   /// Example usage:
   /// ```dart

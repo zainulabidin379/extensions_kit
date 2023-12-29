@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Extension for adding `Padding` to a [Widget].
 extension PaddingExtension on Widget {
   /// Horizontal Padding
   Widget padHrz(double padding) => Padding(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'shimmer/shimmer.dart';
 
+/// Extensions for accessing functionality of the [Widget].
 extension WidgetExtensions on Widget {
   /// Will [Unfocus] any focused textfield
   ///
