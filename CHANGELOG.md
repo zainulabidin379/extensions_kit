@@ -1,3 +1,8 @@
+## 1.0.0
+
+- Updated screenWidth & screenHeight bug
+
+
 ## 0.0.9
 
 - Removed intl dependency

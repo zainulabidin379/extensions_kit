@@ -11,10 +11,10 @@ extension ContextExtensions on BuildContext {
   double w(double width) => width * MediaQuery.of(this).size.width / 100;
 
   /// Get 100 percent of Height of a screen
-  double get screenHeight => MediaQuery.of(this).size.height / 100;
+  double get screenHeight => MediaQuery.of(this).size.height;
 
   /// Get 100 percent of Width of a screen
-  double get screenWidth => MediaQuery.of(this).size.width / 100;
+  double get screenWidth => MediaQuery.of(this).size.width;
 
   /// Indicates whether the app is in dark mode
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;

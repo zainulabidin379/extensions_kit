@@ -1,7 +1,7 @@
 name: extensions_kit
 description: An essential and powerful library of dart extensions to remove the
   boilerplate and speed up the development process.
-version: 0.0.9
+version: 1.0.0
 homepage: https://github.com/zainulabidin379/extensions_kit
 repository: https://github.com/zainulabidin379/extensions_kit
 
