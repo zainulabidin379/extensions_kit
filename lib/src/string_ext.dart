@@ -52,18 +52,18 @@ extension StringExtension on String {
 
   /// Indicates if the string is a number
   ///
-  /// print('2021'.isNum()); // true
-  /// print('3.14'.isNum()); // true
-  /// print('  3.14 \xA0'.isNum()); // true
-  /// print('0.'.isNum()); // true
-  /// print('.0'.isNum()); // true
-  /// print('-1.e3'.isNum()); // true
-  /// print('1234E+7'.isNum()); // true
-  /// print('+.12e-9'.isNum()); // true
-  /// print('-NaN'.isNum()); // true
-  /// print('0xFF'.isNum()); // true
-  /// print(double.infinity.toString().isNum()); // true
-  /// print('1f'.isNum()); // false
+  /// print('2021'.isNum); // true
+  /// print('3.14'.isNum); // true
+  /// print('  3.14 \xA0'.isNum); // true
+  /// print('0.'.isNum); // true
+  /// print('.0'.isNum); // true
+  /// print('-1.e3'.isNum); // true
+  /// print('1234E+7'.isNum); // true
+  /// print('+.12e-9'.isNum); // true
+  /// print('-NaN'.isNum); // true
+  /// print('0xFF'.isNum); // true
+  /// print(double.infinity.toString().isNum); // true
+  /// print('1f'.isNum); // false
   bool get isNum => num.tryParse(this) != null;
 
   /// Converts the string into a [num]

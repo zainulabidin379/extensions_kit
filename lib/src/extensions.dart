@@ -550,46 +550,47 @@ mixin Ext {
   static const Color rose800 = Color(0xFF9F1239);
   static const Color rose900 = Color(0xFF881337);
 
-  ///Checks whether release mode or not
+  /// Checks whether the application is running in release mode.
   static bool get isReleaseMode => kReleaseMode;
 
-  ///Checks whether debug mode or not
+  /// Checks whether the application is running in debug mode.
   static bool get isDebugMode => kDebugMode;
 
-  ///Checks whether profile mode or not
+  /// Checks whether the application is running in profile mode.
   static bool get isProfileMode => kProfileMode;
 
-  ///Checks whether web or not
+  /// Checks whether the application is running on the web.
   static bool get isWeb => kIsWeb;
 
-  ///Checks whether the device is android or not
+  /// Checks whether the device is running on Android.
   static bool get isAndroid =>
       !isWeb && defaultTargetPlatform == TargetPlatform.android;
 
-  ///Checks whether the device is iOS or not
+  /// Checks whether the device is running on iOS.
   static bool get isIOS =>
       !isWeb && defaultTargetPlatform == TargetPlatform.iOS;
 
-  ///Checks whether the device is a mobile OS or not
+  /// Checks whether the device is a mobile operating system (Android or iOS).
   static bool get isMobileOS => !isWeb && (isAndroid || isIOS);
 
-  ///Checks whether the device is linux or not
+  /// Checks whether the device is running on Linux.
   static bool get isLinux =>
       !isWeb && defaultTargetPlatform == TargetPlatform.linux;
 
-  ///Checks whether the device is macOS or not
+  /// Checks whether the device is running on macOS.
   static bool get isMacOS =>
       !isWeb && defaultTargetPlatform == TargetPlatform.macOS;
 
-  ///Checks whether the device is windows or not
+  /// Checks whether the device is running on Windows.
   static bool get isWindows =>
       !isWeb && defaultTargetPlatform == TargetPlatform.windows;
 
-  ///Checks whether the device is fuchsia or not
+  /// Checks whether the device is running on Fuchsia.
   static bool get isFuchsia =>
       !isWeb && defaultTargetPlatform == TargetPlatform.fuchsia;
 
-  ///Checks whether desktop or not
+  /// Checks whether the application is running on a desktop platform
+  /// (Linux, macOS, or Windows).
   static bool get isDesktop =>
       !isWeb &&
       (defaultTargetPlatform == TargetPlatform.linux ||
