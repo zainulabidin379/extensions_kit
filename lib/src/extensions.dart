@@ -637,7 +637,7 @@ mixin Ext {
   /// Example usage:
   /// ```dart
   /// Color myColor = Colors.blue;
-  /// MaterialColor myMaterialColor = MyClass.getMaterialColor(myColor);
+  /// MaterialColor myMaterialColor = Ext.getMaterialColor(myColor);
   /// ```
   static MaterialColor getMaterialColor(Color color) {
     final int red = color.red;
