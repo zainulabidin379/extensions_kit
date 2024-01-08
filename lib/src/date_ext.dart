@@ -238,18 +238,48 @@ extension DateExtension on DateTime {
 
   /// Formats the date and time according to the specified pattern.
   ///
-  /// The pattern can include various placeholders representing components
-  /// of the date and time, such as 'yyyy' for the year, 'MM' for the month,
-  /// and so on. See the documentation for a list of supported placeholders.
+  /// The `format` method allows you to create custom date and time formats by
+  /// using placeholders that represent various components of the date and time.
   ///
-  /// Example usage:
+  /// ## Supported Placeholders:
+  ///
+  /// - `yyyy`: Full year (e.g., 2024)
+  /// - `yy`: Last two digits of the year (e.g., 24)
+  /// - `MMMM`: Full month name (e.g., January)
+  /// - `MMM`: Abbreviated month name (e.g., Jan)
+  /// - `MM`: Two-digit month (01 - 12)
+  /// - `M`: Single-digit month (1 - 12)
+  /// - `dd`: Two-digit day of the month (01 - 31)
+  /// - `d`: Single-digit day of the month (1 - 31)
+  /// - `HH`: Two-digit hour in 24-hour format (00 - 23)
+  /// - `hh`: Two-digit hour in 12-hour format (01 - 12)
+  /// - `mm`: Two-digit minute (00 - 59)
+  /// - `ss`: Two-digit second (00 - 59)
+  /// - `a`: AM or PM
+  /// - `EEEE`: Full weekday name (e.g., Monday)
+  /// - `EEE`: Abbreviated weekday name (e.g., Mon)
+  ///
+  /// ## Example Usage:
   ///
   /// ```dart
   /// DateTime now = DateTime.now();
-  /// print(now.format('yyyy-MM-dd – HH:mm'));      // Example 1
-  /// print(now.format('dd/MMM/yyyy hh:mm:ss a'));  // Example 2
-  /// print(now.format('EEEE, MMMM d, yyyy'));       // Example 3
+  ///
+  /// // Example 1: Format for a standard date and time representation
+  /// print(now.format('yyyy-MM-dd – HH:mm'));  // 2024-01-08 – 15:30
+  ///
+  /// // Example 2: Format with custom date components and 12-hour time format
+  /// print(now.format('dd/MMM/yyyy hh:mm:ss a'));  // 08/Jan/2024 03:30:45 PM
+  ///
+  /// // Example 3: Format for a complete date with full weekday name
+  /// print(now.format('EEEE, MMMM d, yyyy'));  // Saturday, January 8, 2024
+  ///
+  /// // Example 4: Format with minimal components
+  /// print(now.format('M/d/yy'));  // 1/8/24
+  ///
+  /// // Example 5: Format with 24-hour time and no leading zeros in minutes
+  /// print(now.format('HH:mm'));  // 15:30
   /// ```
+
   String format(String pattern) {
     final Map<String, String> formatPlaceholders = {
       'yyyy': this.year.toString(),
@@ -297,16 +327,32 @@ extension DateExtension on DateTime {
   /// Get difference in Seconds
   int diffSeconds(DateTime b) => this.difference(b).inSeconds;
 
-  /// Get difference between two `DateTime` in years, month and days
+  /// Get the difference between two `DateTime` instances in years, months, and days.
   ///
-  /// If you want your string in y, m and d than pass true to `abbr`, by default its false.
+  /// If you want the result in abbreviated form (y, m, d), pass `true` to the `abbr` parameter,
+  /// which is `false` by default.
   ///
   /// Example:
-  /// dateTime.diffYearsMonthsDays(DateTime.now().add(Duration(days: 500))) => 1 year 4 months 15 days
+  /// ```dart
+  /// DateTime start = DateTime.now();
+  /// DateTime end = DateTime.now().add(Duration(days: 500));
+  /// print(start.diffYearsMonthsDays(end));  // Output: 1 year 4 months 15 days
   ///
-  /// dateTime.diffYearsMonthsDays(DateTime.now().add(Duration(days: 370)), abbr: true) => 1 y 5 d
+  /// DateTime start2 = DateTime.now();
+  /// DateTime end2 = DateTime.now().add(Duration(days: 370));
+  /// print(start2.diffYearsMonthsDays(end2, abbr: true));  // Output: 1 y 5 d
+  /// ```
   ///
-  /// *This method provides an approximation and may not be entirely accurate, especially when dealing with leap years and months of varying lengths.
+  /// **Note**: This method provides an approximation and may not be entirely accurate,
+  /// especially when dealing with leap years and months of varying lengths.
+  ///
+  /// The result is formatted as a string indicating the difference in years, months, and days.
+  /// If a component is zero, it won't be included in the result.
+  ///
+  /// `b` The other `DateTime` instance to compare against.
+  /// `abbr` If `true`, the result will be abbreviated (y, m, d); otherwise, it will be in long form.
+  ///
+  /// `return` A string representing the difference in years, months, and days.
   String diffYearsMonthsDays(DateTime b, {bool abbr = false}) {
     final totalDays = this.diffDays(b).abs();
     final years = totalDays ~/ 365;
