@@ -1,3 +1,8 @@
+## 1.0.1
+
+- Added documentation
+- updated code comments
+
 ## 1.0.0
 
 - Updated screenWidth & screenHeight bug
