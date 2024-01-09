@@ -1,7 +1,101 @@
 import 'package:flutter/material.dart';
 
-/// Extensions for adding additional functionality to the [num].
+/// Extensions for adding additional functionality to the `num`.
 extension NumberExtensions on num {
+  /// Generates Lorem Ipsum text with the specified number of words.
+  ///
+  /// Example:
+  /// ```dart
+  /// String loremIpsumText = 15.loremIpsum();
+  /// print(loremIpsumText);
+  /// // Output: 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do...'
+  /// ```
+  ///
+  /// The `loremIpsum` method generates Lorem Ipsum text with a word count equal to [this].
+  /// It utilizes a predefined list of words to construct the text, repeating the words
+  /// as needed to achieve the specified word count.
+  ///
+  /// @return A string containing Lorem Ipsum text with the specified number of words.
+  String loremIpsum() {
+    var words = [
+      'lorem',
+      'ipsum',
+      'dolor',
+      'sit',
+      'amet',
+      'consectetur',
+      'adipiscing',
+      'elit',
+      'sed',
+      'do',
+      'eiusmod',
+      'tempor',
+      'incididunt',
+      'ut',
+      'labore',
+      'et',
+      'dolore',
+      'magna',
+      'aliqua',
+      'ut',
+      'enim',
+      'ad',
+      'minim',
+      'veniam',
+      'quis',
+      'nostrud',
+      'exercitation',
+      'ullamco',
+      'laboris',
+      'nisi',
+      'ut',
+      'aliquip',
+      'ex',
+      'ea',
+      'commodo',
+      'consequat',
+      'duis',
+      'aute',
+      'irure',
+      'dolor',
+      'in',
+      'reprehenderit',
+      'in',
+      'voluptate',
+      'velit',
+      'esse',
+      'cillum',
+      'dolore',
+      'eu',
+      'fugiat',
+      'nulla',
+      'pariatur',
+      'excepteur',
+      'sint',
+      'occaecat',
+      'cupidatat',
+      'non',
+      'proident',
+      'sunt',
+      'in',
+      'culpa',
+      'qui',
+      'officia',
+      'deserunt',
+      'mollit',
+      'anim',
+      'id',
+      'est',
+      'laborum'
+    ];
+
+    var result = '';
+    for (var i = 0; i < this; i++) {
+      result += '${words[i % words.length]} ';
+    }
+    return result.trim();
+  }
+
   /// Converts [int] into English ordinal representation
   /// ```
   /// print(1.ordinal); // 1st
