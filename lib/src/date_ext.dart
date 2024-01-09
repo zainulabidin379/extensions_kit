@@ -51,10 +51,22 @@ extension DateExtension on DateTime {
     'Sun',
   ];
 
-  /// Returns a [DateTime] for each day the given range.
+  /// Returns a sequence of [DateTime] instances for each day within the given range.
   ///
-  /// [start] inclusive
-  /// [end] exclusive
+  /// The range is inclusive for the [start] date and exclusive for the [end] date.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime startDate = DateTime(2022, 1, 8);
+  /// DateTime endDate = DateTime(2022, 1, 12);
+  ///
+  /// Iterable<DateTime> dateRange = DateTime.daysInRange(startDate, endDate);
+  /// print(dateRange.toList());  // [2022-01-08 00:00:00.000, ..., 2022-01-11 00:00:00.000]
+  /// ```
+  ///
+  /// The `daysInRange` method generates a sequence of [DateTime] instances starting
+  /// from the [start] date and continuing until, but not including, the [end] date.
+  /// It accounts for time zone changes during the iteration.
   static Iterable<DateTime> daysInRange(DateTime start, DateTime end) sync* {
     var i = start;
     var offset = start.timeZoneOffset;
@@ -69,17 +81,55 @@ extension DateExtension on DateTime {
     }
   }
 
-  /// Returns a [DateTime] with the date of the original, but time set to
-  /// midnight.
+  /// Returns a [DateTime] with the date of the original, but time set to midnight.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime fullDateTime = DateTime(2022, 1, 8, 15, 30);
+  /// DateTime dateOnly = fullDateTime.dateOnly;
+  /// print(dateOnly);  // 2022-01-08 00:00:00.000
+  /// ```
+  ///
+  /// The `dateOnly` extension provides a convenient way to obtain a new `DateTime` instance
+  /// with the same date as the original but with the time set to midnight (00:00:00).
+  /// This is useful when you want to work specifically with the date component and ignore the time.
   DateTime get dateOnly => DateTime(year, month, day);
 
-  /// Returns [true] if date is on the same day as today otherwise [false]
+  /// Returns [true] if the date is on the same day as today; otherwise, [false].
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime today = DateTime.now();
+  /// DateTime otherDate = DateTime(2022, 1, 8);
+  ///
+  /// print(today.isToday);        // true
+  /// print(otherDate.isToday);    // false
+  /// ```
+  ///
+  /// The `isToday` extension checks whether the date of the [DateTime] instance
+  /// is the same as the current date. It returns [true] if they are on the same day,
+  /// and [false] otherwise. This is a convenient way to determine if a date
+  /// corresponds to the current day.
   bool get isToday {
     final nowDate = DateTime.now();
     return year == nowDate.year && month == nowDate.month && day == nowDate.day;
   }
 
-  /// Returns [true] if date was on the same day as yesterday otherwise [false]
+  /// Returns [true] if the date was on the same day as yesterday; otherwise, [false].
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime yesterday = DateTime.now().subtract(Duration(days: 1));
+  /// DateTime otherDate = DateTime(2022, 1, 8);
+  ///
+  /// print(yesterday.isYesterday);        // true
+  /// print(otherDate.isYesterday);         // false
+  /// ```
+  ///
+  /// The `isYesterday` extension checks whether the date of the [DateTime] instance
+  /// is the same as the date of yesterday. It returns [true] if they are on the
+  /// same day, and [false] otherwise. This is a convenient way to determine if a date
+  /// corresponds to yesterday.
   bool get isYesterday {
     final nowDate = DateTime.now();
     return year == nowDate.year &&
@@ -87,7 +137,21 @@ extension DateExtension on DateTime {
         day == nowDate.day - 1;
   }
 
-  /// Returns [true] if the date will be on the same day as tomorrow otherwise [false]
+  /// Returns [true] if the date will be on the same day as tomorrow; otherwise, [false].
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime tomorrow = DateTime.now().add(Duration(days: 1));
+  /// DateTime otherDate = DateTime(2022, 1, 8);
+  ///
+  /// print(tomorrow.isTomorrow);        // true
+  /// print(otherDate.isTomorrow);       // false
+  /// ```
+  ///
+  /// The `isTomorrow` extension checks whether the date of the [DateTime] instance
+  /// will be the same as the date of tomorrow. It returns [true] if they will be on the
+  /// same day, and [false] otherwise. This is a convenient way to determine if a date
+  /// corresponds to tomorrow.
   bool get isTomorrow {
     final nowDate = DateTime.now();
     return year == nowDate.year &&
@@ -95,7 +159,18 @@ extension DateExtension on DateTime {
         day == nowDate.day + 1;
   }
 
-  /// Add a certain amount of days to this date
+  /// Adds a certain amount of days to this date and returns a new [DateTime] instance.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2022, 1, 8);
+  /// DateTime futureDate = currentDate.addDays(5);
+  /// print(futureDate);  // 2022-01-13 00:00:00.000
+  /// ```
+  ///
+  /// The `addDays` method creates a new [DateTime] instance by adding the specified
+  /// number of days to the original date. The time components (hour, minute, second,
+  /// millisecond, microsecond) remain unchanged.
   DateTime addDays(int amount) => DateTime(
         year,
         month,
@@ -107,7 +182,18 @@ extension DateExtension on DateTime {
         microsecond,
       );
 
-  /// Add a certain amount of hours to this date
+  /// Adds a certain amount of hours to this date and returns a new [DateTime] instance.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2022, 1, 8, 12, 0);
+  /// DateTime futureDate = currentDate.addHours(3);
+  /// print(futureDate);  // 2022-01-08 15:00:00.000
+  /// ```
+  ///
+  /// The `addHours` method creates a new [DateTime] instance by adding the specified
+  /// number of hours to the original date. The date components (year, month, day)
+  /// remain unchanged.
   DateTime addHours(int amount) => DateTime(
         year,
         month,
@@ -119,13 +205,44 @@ extension DateExtension on DateTime {
         microsecond,
       );
 
-  /// The day after this [DateTime]
+  /// Returns a [DateTime] representing the day after this [DateTime].
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2022, 1, 8);
+  /// DateTime nextDay = currentDate.nextDay;
+  /// print(nextDay);  // 2022-01-09 00:00:00.000
+  /// ```
+  ///
+  /// The `nextDay` extension provides a convenient way to obtain a new [DateTime] instance
+  /// representing the day immediately following the original date.
   DateTime get nextDay => addDays(1);
 
-  /// The day previous this [DateTime]
+  /// Returns a [DateTime] representing the day before this [DateTime].
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2022, 1, 8);
+  /// DateTime previousDay = currentDate.previousDay;
+  /// print(previousDay);  // 2022-01-07 00:00:00.000
+  /// ```
+  ///
+  /// The `previousDay` extension provides a convenient way to obtain a new [DateTime] instance
+  /// representing the day immediately preceding the original date.
   DateTime get previousDay => addDays(-1);
 
-  /// Whether or not two times are on the same day.
+  /// Checks whether two [DateTime] instances are on the same day.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime date1 = DateTime(2022, 1, 8, 12, 0);
+  /// DateTime date2 = DateTime(2022, 1, 8, 18, 30);
+  ///
+  /// print(date1.isSameDay(date2));  // true
+  /// ```
+  ///
+  /// The `isSameDay` method compares the year, month, and day components of two [DateTime] instances.
+  /// It returns [true] if they are on the same day and [false] otherwise.
   bool isSameDay(DateTime b) =>
       year == b.year && month == b.month && day == b.day;
 
@@ -336,11 +453,11 @@ extension DateExtension on DateTime {
   /// ```dart
   /// DateTime start = DateTime.now();
   /// DateTime end = DateTime.now().add(Duration(days: 500));
-  /// print(start.diffYearsMonthsDays(end));  // Output: 1 year 4 months 15 days
+  /// print(start.diffYearsMonthsDays(end));  // 1 year 4 months 15 days
   ///
   /// DateTime start2 = DateTime.now();
   /// DateTime end2 = DateTime.now().add(Duration(days: 370));
-  /// print(start2.diffYearsMonthsDays(end2, abbr: true));  // Output: 1 y 5 d
+  /// print(start2.diffYearsMonthsDays(end2, abbr: true));  // 1 y 5 d
   /// ```
   ///
   /// **Note**: This method provides an approximation and may not be entirely accurate,
