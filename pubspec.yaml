@@ -4,6 +4,7 @@ description: An essential and powerful library of dart extensions to remove the
 version: 1.0.0
 homepage: https://github.com/zainulabidin379/extensions_kit
 repository: https://github.com/zainulabidin379/extensions_kit
+documentation: https://extensionskitdocs.vercel.app/
 
 environment:
   sdk: ^3.0.0
