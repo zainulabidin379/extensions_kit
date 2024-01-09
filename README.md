@@ -1,4 +1,11 @@
 <img src="https://raw.githubusercontent.com/zainulabidin379/extensions_kit/main/assets/images/header.png" alt="Logo" width="100%">
+
+<p align="center">
+<a href="https://pub.dev/packages/extensions_kit"><img alt="Pub Version" src="https://img.shields.io/pub/v/extensions_kit"></a>
+<a href="https://pub.dev/packages/extensions_kit/score"><img alt="Pub Points" src="https://img.shields.io/pub/points/extensions_kit"></a>
+<a href="https://pub.dev/packages/extensions_kit/score"><img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/extensions_kit"></a>
+</p>
+
 <p align="center">An essential and powerful library of dart extensions to remove the boilerplate and speed up the development process.</p>
 <br>
 
