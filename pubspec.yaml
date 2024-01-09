@@ -5,6 +5,16 @@ version: 1.0.1
 homepage: https://github.com/zainulabidin379/extensions_kit
 repository: https://github.com/zainulabidin379/extensions_kit
 documentation: https://extensionskitdocs.vercel.app/
+tags:
+  - extensions
+  - flutter-extensions
+  - dart-extensions
+  - string-extensions
+  - date-extensions
+  - lorem-ipsum
+  - widget-extensions
+  - awesome-extensions
+  - extensions-library
 
 environment:
   sdk: ^3.0.0
