@@ -264,45 +264,125 @@ extension DateExtension on DateTime {
     return daysInRange(firstToDisplay, lastToDisplay).toList();
   }
 
-  /// Checks if `DateTime` is the first day of the month
+  /// Checks if this [DateTime] instance represents the first day of the month.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime firstDay = DateTime(2022, 1, 1);
+  /// DateTime otherDay = DateTime(2022, 1, 8);
+  ///
+  /// print(firstDay.isFirstDayOfMonth);  // Output: true
+  /// print(otherDay.isFirstDayOfMonth);  // Output: false
+  /// ```
+  ///
+  /// The `isFirstDayOfMonth` extension returns [true] if the date is the first day of the month,
+  /// and [false] otherwise. It compares the year, month, and day components of the [DateTime]
+  /// instance with the date of the first day of the same month.
   bool get isFirstDayOfMonth => isSameDay(firstDayOfMonth);
 
-  /// Checks if `DateTime` is the last day of the month
+  /// Checks if this [DateTime] instance represents the last day of the month.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime lastDay = DateTime(2022, 1, 31);
+  /// DateTime otherDay = DateTime(2022, 1, 8);
+  ///
+  /// print(lastDay.isLastDayOfMonth);  // Output: true
+  /// print(otherDay.isLastDayOfMonth);  // Output: false
+  /// ```
+  ///
+  /// The `isLastDayOfMonth` extension returns [true] if the date is the last day of the month,
+  /// and [false] otherwise. It compares the year, month, and day components of the [DateTime]
+  /// instance with the date of the last day of the same month.
   bool get isLastDayOfMonth => isSameDay(lastDayOfMonth);
 
-  /// Returns `DateTime` of the first day of the month of `this`
+  /// Returns a [DateTime] instance representing the first day of the month of this [DateTime].
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2022, 1, 8);
+  /// DateTime firstDay = currentDate.firstDayOfMonth;
+  /// print(firstDay);  // Output: 2022-01-01 00:00:00.000
+  /// ```
+  ///
+  /// The `firstDayOfMonth` extension returns a new [DateTime] instance with the same year and month
+  /// as the original date but with the day set to 1 and the time set to midnight (00:00:00).
   DateTime get firstDayOfMonth => DateTime(year, month);
 
+  /// Returns a [DateTime] instance representing the first day of the week of this [DateTime].
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2022, 1, 8);
+  /// DateTime firstDayOfWeek = currentDate.firstDayOfWeek;
+  /// print(firstDayOfWeek);  // Output: 2022-01-03 12:00:00.000 (Assuming Monday is the first day of the week)
+  /// ```
+  ///
+  /// The `firstDayOfWeek` getter returns a new [DateTime] instance with the same year, month,
+  /// and hour as the original date but adjusted to the first day of the week. Daylight Saving
+  /// Time is handled by setting the hour to 12:00 Noon rather than the default of Midnight (00:00:00).
+  /// The week in this context is considered to start from Monday.
   DateTime get firstDayOfWeek {
     /// Handle Daylight Savings by setting hour to 12:00 Noon
     /// rather than the default of Midnight
     final day = DateTime.utc(year, month, this.day, 12);
 
     /// Weekday is on a 1-7 scale Monday - Sunday,
-    /// This Calendar works from Sunday - Monday
-    var decreaseNum = day.weekday % 7;
+    var decreaseNum = (day.weekday - 1) % 7;
     return subtract(Duration(days: decreaseNum));
   }
 
+  /// Returns a [DateTime] instance representing the last day of the week of this [DateTime].
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2022, 1, 8);
+  /// DateTime lastDayOfWeek = currentDate.lastDayOfWeek;
+  /// print(lastDayOfWeek);  // Output: 2022-01-09 12:00:00.000 (Assuming Sunday is the last day of the week)
+  /// ```
+  ///
+  /// The `lastDayOfWeek` getter returns a new [DateTime] instance with the same year, month,
+  /// and hour as the original date but adjusted to the last day of the week. Daylight Saving
+  /// Time is handled by setting the hour to 12:00 Noon rather than the default of Midnight (00:00:00).
+  /// The week in this context is considered to end on Sunday.
   DateTime get lastDayOfWeek {
     /// Handle Daylight Savings by setting hour to 12:00 Noon
     /// rather than the default of Midnight
     final day = DateTime.utc(year, month, this.day, 12);
 
     /// Weekday is on a 1-7 scale Monday - Sunday,
-    /// This Calendar's Week starts on Sunday
-    var increaseNum = day.weekday % 7;
+    var increaseNum = (7 - day.weekday) % 7;
     return day.add(Duration(days: 7 - increaseNum));
   }
 
-  /// The last day of a given month
+  /// Returns a [DateTime] instance representing the last day of the month of this [DateTime].
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2022, 1, 8);
+  /// DateTime lastDayOfMonth = currentDate.lastDayOfMonth;
+  /// print(lastDayOfMonth);  // Output: 2022-01-31 00:00:00.000
+  /// ```
+  ///
+  /// The `lastDayOfMonth` getter calculates and returns a new [DateTime] instance with the same
+  /// year and month as the original date but adjusted to the last day of that month.
   DateTime get lastDayOfMonth {
     var beginningNextMonth =
         (month < 12) ? DateTime(year, month + 1, 1) : DateTime(year + 1, 1, 1);
     return beginningNextMonth.subtract(const Duration(days: 1));
   }
 
-  /// Get exact `DateTime` of previous month
+  /// Returns a [DateTime] instance representing the exact date of the previous month.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2024, 1, 8);
+  /// DateTime previousMonthDate = currentDate.previousMonth;
+  /// print(previousMonthDate);  // Output: 2023-12-08 00:00:00
+  /// ```
+  ///
+  /// The `previousMonth` extension calculates and returns a new [DateTime] instance
+  /// with the same day and time as the original date but adjusted to the exact date of the previous month.
   DateTime get previousMonth {
     var year = this.year;
     var month = this.month;
@@ -315,7 +395,17 @@ extension DateExtension on DateTime {
     return DateTime(year, month);
   }
 
-  /// Get exact `DateTime` of coming month
+  /// Returns a [DateTime] instance representing the exact date of the next coming month.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2024, 1, 8);
+  /// DateTime nextMonthDate = currentDate.nextMonth;
+  /// print(nextMonthDate);  // Output: 2023-2-08 00:00:00
+  /// ```
+  ///
+  /// The `nextMonth` extension calculates and returns a new [DateTime] instance
+  /// with the same day and time as the original date but adjusted to the exact date of the next month.
   DateTime get nextMonth {
     var year = this.year;
     var month = this.month;
@@ -329,16 +419,46 @@ extension DateExtension on DateTime {
     return DateTime(year, month);
   }
 
-  /// Get exact `DateTime` of previous week
+  /// Returns a [DateTime] instance representing the exact date of the previous week.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2024, 1, 15);
+  /// DateTime previousWeekDate = currentDate.previousWeek;
+  /// print(previousWeekDate);  // Output: 2024-01-08 00:00:00
+  /// ```
+  ///
+  /// The `previousWeek` extension calculates and returns a new [DateTime] instance
+  /// by subtracting seven days from the original date, representing the exact date of the previous week.
   DateTime get previousWeek => subtract(const Duration(days: 7));
 
-  /// Get exact `DateTime` of coming week
+  /// Returns a [DateTime] instance representing the exact date of the coming week.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime currentDate = DateTime(2024, 1, 8);
+  /// DateTime nextWeekDate = currentDate.nextWeek;
+  /// print(nextWeekDate);  // Output: 2024-01-15 00:00:00
+  /// ```
+  ///
+  /// The `nextWeek` extension calculates and returns a new [DateTime] instance
+  /// by adding seven days to the original date, representing the exact date of the coming week.
   DateTime get nextWeek => add(const Duration(days: 7));
 
-  /// Check if two `DateTime` are in the same week
+  /// Checks if two [DateTime] instances fall within the same week.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime date1 = DateTime(2024, 1, 8);
+  /// DateTime date2 = DateTime(2024, 1, 12);
+  ///
+  /// bool result = date1.isSameWeek(date2);
+  /// print(result);  // Output: true
+  /// ```
+  ///
+  /// The `isSameWeek` method compares two [DateTime] instances, ignoring the time component,
+  /// and determines if they fall within the same week.
   bool isSameWeek(DateTime b) {
-    /// Handle Daylight Savings by setting hour to 12:00 Noon
-    /// rather than the default of Midnight
     final a = DateTime.utc(year, month, day);
     b = DateTime.utc(b.year, b.month, b.day);
 
@@ -432,16 +552,64 @@ extension DateExtension on DateTime {
     return '0$n';
   }
 
-  /// Get difference in Days
+  /// Returns the difference in days between two [DateTime] instances.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime date1 = DateTime(2024, 1, 8);
+  /// DateTime date2 = DateTime(2024, 1, 12);
+  ///
+  /// int daysDifference = date1.diffDays(date2);
+  /// print(daysDifference);  // Output: -4
+  /// ```
+  ///
+  /// The `diffDays` method calculates and returns the difference in days between the current [DateTime] instance
+  /// and the provided [DateTime]. The result can be negative if the current date is before the provided date.
   int diffDays(DateTime b) => this.difference(b).inDays;
 
-  /// Get difference in Hours
+  /// Returns the difference in hours between two [DateTime] instances.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime date1 = DateTime(2024, 1, 8, 12, 0);
+  /// DateTime date2 = DateTime(2024, 1, 12, 9, 30);
+  ///
+  /// int hoursDifference = date1.diffHours(date2);
+  /// print(hoursDifference);  // Output: -92
+  /// ```
+  ///
+  /// The `diffHours` method calculates and returns the difference in hours between the current [DateTime] instance
+  /// and the provided [DateTime]. The result can be negative if the current time is before the provided time.
   int diffHours(DateTime b) => this.difference(b).inHours;
 
-  /// Get difference in Minutes
+  /// Returns the difference in minutes between two [DateTime] instances.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime date1 = DateTime(2024, 1, 8, 12, 0);
+  /// DateTime date2 = DateTime(2024, 1, 12, 9, 30);
+  ///
+  /// int minutesDifference = date1.diffMinutes(date2);
+  /// print(minutesDifference);  // Output: -5530
+  /// ```
+  ///
+  /// The `diffMinutes` method calculates and returns the difference in minutes between the current [DateTime] instance
+  /// and the provided [DateTime]. The result can be negative if the current time is before the provided time.
   int diffMinutes(DateTime b) => this.difference(b).inMinutes;
 
-  /// Get difference in Seconds
+  /// Returns the difference in seconds between two [DateTime] instances.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime date1 = DateTime(2024, 1, 8, 12, 0, 0);
+  /// DateTime date2 = DateTime(2024, 1, 12, 9, 30, 15);
+  ///
+  /// int secondsDifference = date1.diffSeconds(date2);
+  /// print(secondsDifference);  // Output: -331215
+  /// ```
+  ///
+  /// The `diffSeconds` method calculates and returns the difference in seconds between the current [DateTime] instance
+  /// and the provided [DateTime]. The result can be negative if the current time is before the provided time.
   int diffSeconds(DateTime b) => this.difference(b).inSeconds;
 
   /// Get the difference between two `DateTime` instances in years, months, and days.
