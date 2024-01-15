@@ -9,7 +9,7 @@
 <p align="center">An essential and powerful library of dart extensions to remove the boilerplate and speed up the development process.</p>
 <br>
 
-# <a href="https://extensionskitdocs.vercel.app/" target="_blank">📋 Full Documentation & Usage Examples</a>
+# <a href="https://extensionskitdocs.vercel.app/" target="_blank">🔗 Full Documentation & Usage Examples</a>
 
 ## Installation
 
