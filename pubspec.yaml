@@ -1,20 +1,11 @@
 name: extensions_kit
 description: An essential and powerful library of dart extensions to remove the
   boilerplate and speed up the development process.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/zainulabidin379/extensions_kit
 repository: https://github.com/zainulabidin379/extensions_kit
+issue_tracker: https://github.com/zainulabidin379/extensions_kit/issues/new
 documentation: https://extensionskitdocs.vercel.app/
-tags:
-  - extensions
-  - flutter-extensions
-  - dart-extensions
-  - string-extensions
-  - date-extensions
-  - lorem-ipsum
-  - widget-extensions
-  - awesome-extensions
-  - extensions-library
 
 environment:
   sdk: ^3.0.0
@@ -32,3 +23,10 @@ dev_dependencies:
     sdk: flutter
 
 flutter: null
+
+topics:
+  - flutter-extensions
+  - dart-extensions
+  - string-extensions
+  - date-extensions
+  - widget-extensions

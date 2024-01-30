@@ -4,7 +4,7 @@ export 'src/avatar.dart';
 export 'src/container_ext.dart';
 export 'src/context_ext.dart';
 export 'src/date_ext.dart';
-export 'src/extensions.dart';
+export 'src/ext.dart';
 export 'src/miscellaneous_ext.dart';
 export 'src/navigation_ext.dart';
 export 'src/nil.dart';

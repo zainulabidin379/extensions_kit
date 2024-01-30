@@ -137,6 +137,16 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Show Info Snackbar')),
           const Gap(20),
 
+          /// Generate Unique Id
+          ElevatedButton(
+              onPressed: () {
+                String uid = Ext.uniqueId();
+                uid.log();
+                Ext.showInfoSnackbar(uid, context);
+              },
+              child: Text('Generate Unique Id')),
+          const Gap(20),
+
           ///Date Extensions
           Text('${dateTime.isToday}'),
           Text('${dateTime.isFirstDayOfMonth}'),

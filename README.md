@@ -4,12 +4,14 @@
 <a href="https://pub.dev/packages/extensions_kit"><img alt="Pub Version" src="https://img.shields.io/pub/v/extensions_kit"></a>
 <a href="https://pub.dev/packages/extensions_kit/score"><img alt="Pub Points" src="https://img.shields.io/pub/points/extensions_kit"></a>
 <a href="https://pub.dev/packages/extensions_kit/score"><img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/extensions_kit"></a>
+<a href="https://extensionskitdocs.vercel.app/"><img alt="Documentation Link" src="https://img.shields.io/badge/extensions_kit-Documentation-blue"></a>
 </p>
+
 
 <p align="center">An essential and powerful library of dart extensions to remove the boilerplate and speed up the development process.</p>
 <br>
 
-# <a href="https://extensionskitdocs.vercel.app/" target="_blank">🔗 Full Documentation & Usage Examples</a>
+# <a href="https://extensionskitdocs.vercel.app/" target="_blank">🔗 Full Documentation & Usage Examples ➲</a>
 
 ## Installation
 

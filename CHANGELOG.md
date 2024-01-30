@@ -1,3 +1,10 @@
+## 1.0.3
+
+- Added unique ID generator
+- Updated Readme
+- Added complete documentation link
+- Updated dartdoc comments
+
 ## 1.0.2
 
 - Added lorem ipsum generator

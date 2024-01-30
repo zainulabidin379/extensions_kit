@@ -1119,4 +1119,37 @@ mixin Ext {
   static double deg2rad(deg) {
     return deg * (pi / 180);
   }
+
+  /// Generates a unique ID consisting of random alphanumeric characters and timestamp.
+  ///
+  /// Example:
+  /// ```dart
+  /// String id = uniqueId(); // Generates a unique ID with default length 17 + (Timestamp length)
+  /// String idWithLength = uniqueId(length: 20); // Generates a unique ID with specified length + (Timestamp length)
+  /// ```
+  ///
+  /// The `uniqueId` function generates a unique identifier by combining random alphanumeric characters
+  /// with the current timestamp (milliseconds since epoch). The default length of the ID is 17 + (Timestamp length) characters,
+  /// but it can be customized by providing a specific length.
+  ///
+  /// `length`: The length of the generated unique ID (default is 17 + (Timestamp length)).
+  static String uniqueId({int length = 17}) {
+    // Characters
+    const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    // Used to ensure a cryptographically secure random number generator.
+    final random = Random.secure();
+
+    // Generating a random string of length specified
+    final randomString = String.fromCharCodes(Iterable.generate(
+        length, (_) => chars.codeUnitAt(random.nextInt(chars.length))));
+
+    // Get current timestamp (milliseconds since epoch)
+    int timestamp = DateTime.now().millisecondsSinceEpoch;
+
+    // Combine timestamp and random string to create unique ID
+    String uniqueId = '$randomString$timestamp';
+
+    return uniqueId;
+  }
 }
