@@ -116,7 +116,10 @@ class _MyHomePageState extends State<MyHomePage> {
           /// Snackbar
           ElevatedButton(
               onPressed: () {
-                Ext.showMessageSnackbar("This is a message Snackbar", context);
+                Ext.showMessageSnackbar(
+                  "This is a message Snackbar",
+                  context,
+                );
               },
               child: Text('Show Message Snackbar')),
           const Gap(10),
@@ -124,7 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
           /// Snackbar
           ElevatedButton(
               onPressed: () {
-                Ext.showErrorSnackbar("This is an Error Snackbar", context);
+                Ext.showErrorSnackbar("This is an Error Snackbar", context,
+                    width: 600);
               },
               child: Text('Show Error Snackbar')),
           const Gap(10),

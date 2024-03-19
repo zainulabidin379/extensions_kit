@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:extensions_kit/extensions_kit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -708,6 +709,8 @@ mixin Ext {
   ///
   /// [context] - The BuildContext in which the Snackbar will be shown.
   ///
+  /// [width] - The width of the snackbar.
+  ///
   /// [animationDuration] - The duration of the show animation.
   ///
   /// [reverseAnimationDuration] - The duration of the reverse (hide) animation.
@@ -762,6 +765,7 @@ mixin Ext {
   static showMessageSnackbar(
     String message,
     BuildContext context, {
+    double? width,
     Duration animationDuration = const Duration(milliseconds: 1200),
     Duration reverseAnimationDuration = const Duration(milliseconds: 550),
     Duration displayDuration = const Duration(milliseconds: 3000),
@@ -796,20 +800,29 @@ mixin Ext {
   }) {
     return showTopSnackBar(
       Overlay.of(context),
-      CustomSnackBar.success(
-        message: message,
-        messagePadding: messagePadding,
-        icon: icon,
-        textStyle: textStyle,
-        maxLines: maxLines,
-        iconPositionLeft: iconPositionLeft,
-        iconPositionTop: iconPositionTop,
-        iconRotationAngle: iconRotationAngle,
-        backgroundColor: backgroundColor,
-        boxShadow: boxShadow,
-        borderRadius: borderRadius,
-        textScaleFactor: textScaleFactor,
-        textAlign: textAlign,
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: width ?? double.infinity,
+            child: CustomSnackBar.success(
+              message: message,
+              messagePadding: messagePadding,
+              icon: icon,
+              textStyle: textStyle,
+              maxLines: maxLines,
+              iconPositionLeft: iconPositionLeft,
+              iconPositionTop: iconPositionTop,
+              iconRotationAngle: iconRotationAngle,
+              backgroundColor: backgroundColor,
+              boxShadow: boxShadow,
+              borderRadius: borderRadius,
+              textScaleFactor: textScaleFactor,
+              textAlign: textAlign,
+            ),
+          ).flexible,
+        ],
       ),
       animationDuration: animationDuration,
       reverseAnimationDuration: reverseAnimationDuration,
@@ -832,6 +845,8 @@ mixin Ext {
   /// [message] - The error message to be displayed.
   ///
   /// [context] - The BuildContext in which the Snackbar will be shown.
+  ///
+  /// [width] - The width of the snackbar.
   ///
   /// [animationDuration] - The duration of the show animation.
   ///
@@ -887,6 +902,7 @@ mixin Ext {
   static showErrorSnackbar(
     String message,
     BuildContext context, {
+    double? width,
     Duration animationDuration = const Duration(milliseconds: 1200),
     Duration reverseAnimationDuration = const Duration(milliseconds: 550),
     Duration displayDuration = const Duration(milliseconds: 3000),
@@ -921,20 +937,29 @@ mixin Ext {
   }) {
     return showTopSnackBar(
       Overlay.of(context),
-      CustomSnackBar.error(
-        message: message,
-        messagePadding: messagePadding,
-        icon: icon,
-        textStyle: textStyle,
-        maxLines: maxLines,
-        iconPositionLeft: iconPositionLeft,
-        iconPositionTop: iconPositionTop,
-        iconRotationAngle: iconRotationAngle,
-        backgroundColor: backgroundColor,
-        boxShadow: boxShadow,
-        borderRadius: borderRadius,
-        textScaleFactor: textScaleFactor,
-        textAlign: textAlign,
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: width ?? double.infinity,
+            child: CustomSnackBar.error(
+              message: message,
+              messagePadding: messagePadding,
+              icon: icon,
+              textStyle: textStyle,
+              maxLines: maxLines,
+              iconPositionLeft: iconPositionLeft,
+              iconPositionTop: iconPositionTop,
+              iconRotationAngle: iconRotationAngle,
+              backgroundColor: backgroundColor,
+              boxShadow: boxShadow,
+              borderRadius: borderRadius,
+              textScaleFactor: textScaleFactor,
+              textAlign: textAlign,
+            ),
+          ).flexible,
+        ],
       ),
       animationDuration: animationDuration,
       reverseAnimationDuration: reverseAnimationDuration,
@@ -957,6 +982,8 @@ mixin Ext {
   /// [message] - The information message to be displayed.
   ///
   /// [context] - The BuildContext in which the Snackbar will be shown.
+  ///
+  /// [width] - The width of the snackbar.
   ///
   /// [animationDuration] - The duration of the show animation.
   ///
@@ -1012,6 +1039,7 @@ mixin Ext {
   static showInfoSnackbar(
     String message,
     BuildContext context, {
+    double? width,
     Duration animationDuration = const Duration(milliseconds: 1200),
     Duration reverseAnimationDuration = const Duration(milliseconds: 550),
     Duration displayDuration = const Duration(milliseconds: 3000),
@@ -1046,20 +1074,29 @@ mixin Ext {
   }) {
     return showTopSnackBar(
       Overlay.of(context),
-      CustomSnackBar.info(
-        message: message,
-        messagePadding: messagePadding,
-        icon: icon,
-        textStyle: textStyle,
-        maxLines: maxLines,
-        iconPositionLeft: iconPositionLeft,
-        iconPositionTop: iconPositionTop,
-        iconRotationAngle: iconRotationAngle,
-        backgroundColor: backgroundColor,
-        boxShadow: boxShadow,
-        borderRadius: borderRadius,
-        textScaleFactor: textScaleFactor,
-        textAlign: textAlign,
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: width ?? double.infinity,
+            child: CustomSnackBar.info(
+              message: message,
+              messagePadding: messagePadding,
+              icon: icon,
+              textStyle: textStyle,
+              maxLines: maxLines,
+              iconPositionLeft: iconPositionLeft,
+              iconPositionTop: iconPositionTop,
+              iconRotationAngle: iconRotationAngle,
+              backgroundColor: backgroundColor,
+              boxShadow: boxShadow,
+              borderRadius: borderRadius,
+              textScaleFactor: textScaleFactor,
+              textAlign: textAlign,
+            ),
+          ).flexible,
+        ],
       ),
       animationDuration: animationDuration,
       reverseAnimationDuration: reverseAnimationDuration,

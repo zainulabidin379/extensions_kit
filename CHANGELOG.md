@@ -1,3 +1,8 @@
+## 1.0.4
+
+- Added custom width to snackbars
+- Updated Readme
+
 ## 1.0.3
 
 - Added unique ID generator
