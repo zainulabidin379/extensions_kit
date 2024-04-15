@@ -1157,7 +1157,7 @@ mixin Ext {
     return deg * (pi / 180);
   }
 
-  /// Generates a unique ID consisting of random alphanumeric characters and timestamp.
+  /// Generates a unique ID consisting of random alphanumeric characters and an optional timestamp.
   ///
   /// Example:
   /// ```dart
@@ -1166,11 +1166,19 @@ mixin Ext {
   /// ```
   ///
   /// The `uniqueId` function generates a unique identifier by combining random alphanumeric characters
-  /// with the current timestamp (milliseconds since epoch). The default length of the ID is 17 + (Timestamp length) characters,
-  /// but it can be customized by providing a specific length.
+  /// with an optional current timestamp (milliseconds since epoch). The default length of the ID is
+  /// 17 + (Timestamp length) characters, but it can be customized by providing a specific length.
   ///
-  /// `length`: The length of the generated unique ID (default is 17 + (Timestamp length)).
-  static String uniqueId({int length = 17}) {
+  /// Parameters:
+  ///   - `length`: The length of the generated unique ID (default is 17 + (Timestamp length)).
+  ///   - `includeTimestamp`: Whether to include a timestamp in the generated ID (default is true).
+  ///
+  /// Returns:
+  ///   A string representing the unique ID.
+  ///
+  /// Note: If `includeTimestamp` is set to true, the timestamp will be appended to the end of the random string.
+  /// If `includeTimestamp` is false, only the random string will be returned.
+  static String uniqueId({int length = 17, bool includeTimestamp = true}) {
     // Characters
     const chars =
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -1181,12 +1189,16 @@ mixin Ext {
     final randomString = String.fromCharCodes(Iterable.generate(
         length, (_) => chars.codeUnitAt(random.nextInt(chars.length))));
 
-    // Get current timestamp (milliseconds since epoch)
-    int timestamp = DateTime.now().millisecondsSinceEpoch;
+    if (includeTimestamp) {
+      // Get current timestamp (milliseconds since epoch)
+      int timestamp = DateTime.now().millisecondsSinceEpoch;
 
-    // Combine timestamp and random string to create unique ID
-    String uniqueId = '$randomString$timestamp';
+      // Combine timestamp and random string to create unique ID
+      String uniqueId = '$randomString$timestamp';
 
-    return uniqueId;
+      return uniqueId;
+    } else {
+      return randomString;
+    }
   }
 }

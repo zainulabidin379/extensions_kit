@@ -1,3 +1,7 @@
+## 1.0.5
+
+- updated unique id Ext
+
 ## 1.0.4
 
 - Added custom width to snackbars
