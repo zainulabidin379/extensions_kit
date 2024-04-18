@@ -1,3 +1,8 @@
+## 1.0.6
+
+- added number to abbreviated string ext
+- updated Readme
+
 ## 1.0.5
 
 - updated unique id Ext

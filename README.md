@@ -255,8 +255,13 @@ context.popUntil('/login', rootNavigator: true);
 ```dart
 // Get number into its English ordinal representation
 1.ordinal; // 1st
-3.ordinal/ // 3rd
+3.ordinal; // 3rd
 234.ordinal; // 234th
+
+// Get string representation of the number abbreviated to a compact form
+999.abbreviated; // "999"
+1000.abbreviated; // "1k"
+1100.abbreviated; // "1.1k"
 
 // Check if the number is between the given numbers
 45.between(40,60); // true

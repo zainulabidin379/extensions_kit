@@ -275,6 +275,35 @@ extension NumberExtensions on num {
   /// The `circular` method returns [BorderRadiusGeometry] with a circular radius set to the value of the current integer.
   /// It is useful for creating rounded corners with a consistent circular radius.
   BorderRadiusGeometry circular() => BorderRadius.circular(toDouble());
+
+  /// Returns a string representation of the number abbreviated to a compact form.
+  ///
+  /// This method abbreviates the number to a shorter form using "k" for thousands,
+  /// "M" for millions, and "B" for billions. For numbers less than 1000, it returns
+  /// the number as a plain string. For numbers in thousands, millions, or billions,
+  /// it formats the number to one decimal place and appends the corresponding
+  /// abbreviation. If the decimal place is zero, it is omitted for a cleaner look.
+  ///
+  /// Examples:
+  /// - 999 returns "999"
+  /// - 1000 returns "1k"
+  /// - 1100 returns "1.1k"
+  /// - 2500000 returns "2.5M"
+  /// - 3000000000 returns "3B"
+  ///
+  /// Returns:
+  /// A string representation of the abbreviated number.
+  String get abbreviated {
+    if (this >= 1000 && this < 1000000) {
+      return "${(this / 1000).toStringAsFixed(1).replaceAll(RegExp(r'\.0$'), '')}k";
+    } else if (this >= 1000000 && this < 1000000000) {
+      return "${(this / 1000000).toStringAsFixed(1).replaceAll(RegExp(r'\.0$'), '')}M";
+    } else if (this >= 1000000000) {
+      return "${(this / 1000000000).toStringAsFixed(1).replaceAll(RegExp(r'\.0$'), '')}B";
+    } else {
+      return this.toString();
+    }
+  }
 }
 
 /// Creates [EdgeInsets] with only the given values for left, right, top, and bottom offsets.
