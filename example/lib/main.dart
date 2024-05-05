@@ -127,7 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
           /// Snackbar
           ElevatedButton(
               onPressed: () {
-                Ext.showErrorSnackbar("This is an Error Snackbar", context, width: 600);
+                Ext.showErrorSnackbar("This is an Error Snackbar", context,
+                    width: 600);
               },
               child: Text('Show Error Snackbar')),
           const Gap(10),
@@ -155,8 +156,12 @@ class _MyHomePageState extends State<MyHomePage> {
           Text('${dateTime.isFirstDayOfMonth}'),
           Text('${dateTime.isSameDay(dateTime)}'),
           Text('${dateTime.format('dd MMM yy - hh:mm a')}'),
-          Text(dateTime.diffHours(DateTime.now().add(Duration(days: 5))).toString()).textColor(Ext.red600),
-          Text(dateTime.diffYearsMonthsDays(DateTime.now().add(Duration(days: 396)))),
+          Text(dateTime
+                  .diffHours(DateTime.now().add(Duration(days: 5)))
+                  .toString())
+              .textColor(Ext.red600),
+          Text(dateTime
+              .diffYearsMonthsDays(DateTime.now().add(Duration(days: 396)))),
 
           20.heightBox,
 
@@ -170,14 +175,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
               onPressed: () {
                 context.showAlertDialog(
-                    title: 'title', message: 'message', cancelButtonTitle: 'ok', cancelTitleColor: Colors.green, fontSize: 20);
+                    title: 'title',
+                    message: 'message',
+                    cancelButtonTitle: 'ok',
+                    cancelTitleColor: Colors.green,
+                    fontSize: 20);
               },
               child: Text('Show Dialog')),
           Gap(50),
           Container(
             height: 100,
             width: 100,
-          ).withRoundCorners(backgroundColor: Colors.green, radius: 25).withShadow()
+          )
+              .withRoundCorners(backgroundColor: Colors.green, radius: 25)
+              .withShadow()
         ],
       ).padHrz(20),
     );

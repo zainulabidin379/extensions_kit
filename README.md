@@ -56,7 +56,7 @@ Available Extensions & Methods 🔥
 
 ```dart
 // Validate an email
-"example@mail.com".isEmail; // true
+"example@mail.com".isEmailAddress; // true
 
 // Capitalizes each word in the string
 "hello world".capitalize; // Hello World

@@ -4,7 +4,7 @@ final RegExp _emailRegularExpression = RegExp(
 /// Extensions for adding additional functionality to the [String].
 extension StringExtension on String {
   /// Returns true if string contains email
-  bool get isEmail => _emailRegularExpression.hasMatch(toLowerCase());
+  bool get isEmailAddress => _emailRegularExpression.hasMatch(toLowerCase());
 
   /// Capitalizes each word in the string, e.g.:
   /// `hello world` becomes `Hello World`.

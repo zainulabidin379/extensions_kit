@@ -1,3 +1,8 @@
+## 1.0.7
+
+- Updated isEmail -> isEmailAddress
+- updated Readme
+
 ## 1.0.6
 
 - added number to abbreviated string ext
