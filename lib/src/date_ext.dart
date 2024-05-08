@@ -518,27 +518,35 @@ extension DateExtension on DateTime {
   /// ```
 
   String format(String pattern) {
-    final Map<String, String> formatPlaceholders = {
-      'yyyy': this.year.toString(),
-      'MMMM': _monthNames[this.month - 1],
-      'EEEE': _weekdayNames[this.weekday - 1],
-      'MMM': _monthAbbreviations[this.month - 1],
-      'EEE': _weekdayAbbreviations[this.weekday - 1],
-      'yy': this.year.toString().substring(2),
-      'MM': _twoDigits(this.month),
-      'dd': _twoDigits(this.day),
-      'HH': _twoDigits(this.hour),
-      'hh': _twoDigits(this.hour % 12),
-      'mm': _twoDigits(this.minute),
-      'ss': _twoDigits(this.second),
-      'M': this.month.toString(),
-      'd': this.day.toString(),
-      'a': this.hour < 12 ? 'AM' : 'PM',
-    };
+    final List<MapEntry<String, String>> formatPlaceholders = [
+      MapEntry('yyyy', this.year.toString()),
+      MapEntry('yy', this.year.toString().substring(2)),
+      MapEntry('MMMM', _monthNames[this.month - 1]),
+      MapEntry('MMM', _monthAbbreviations[this.month - 1]),
+      MapEntry('MM', _twoDigits(this.month)),
+      MapEntry('M', this.month.toString()),
+      MapEntry('EEEE', _weekdayNames[this.weekday - 1]),
+      MapEntry('EEE', _weekdayAbbreviations[this.weekday - 1]),
+      MapEntry('dd', _twoDigits(this.day)),
+      MapEntry('d', this.day.toString()),
+      MapEntry('HH', _twoDigits(this.hour)),
+      MapEntry('hh', _twoDigits(this.hour % 12 == 0 ? 12 : this.hour % 12)),
+      MapEntry('mm', _twoDigits(this.minute)),
+      MapEntry('ss', _twoDigits(this.second)),
+      MapEntry('a', this.hour < 12 ? 'AM' : 'PM'),
+    ];
 
-    String result = pattern;
-    formatPlaceholders.forEach((placeholder, value) {
-      result = result.replaceAll(placeholder, value);
+    // Use a regular expression to match and replace placeholders
+    final RegExp regExp = RegExp(
+        r'\b(' + formatPlaceholders.map((e) => e.key).join('|') + r')\b');
+
+    // Replace each matched placeholder with its corresponding value
+    String result = pattern.replaceAllMapped(regExp, (match) {
+      String matched = match[0]!;
+      return formatPlaceholders
+          .firstWhere((e) => e.key == matched,
+              orElse: () => MapEntry(matched, matched))
+          .value;
     });
 
     return result;

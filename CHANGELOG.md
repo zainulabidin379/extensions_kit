@@ -1,3 +1,7 @@
+## 1.0.9
+
+- Fixed date formatting bug
+
 ## 1.0.8
 
 - Fixed date format ext
