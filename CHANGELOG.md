@@ -1,3 +1,7 @@
+## 1.0.8
+
+- Fixed date format ext
+
 ## 1.0.7
 
 - Updated isEmail -> isEmailAddress
