@@ -520,20 +520,20 @@ extension DateExtension on DateTime {
   String format(String pattern) {
     final Map<String, String> formatPlaceholders = {
       'yyyy': this.year.toString(),
-      'yy': this.year.toString().substring(2),
       'MMMM': _monthNames[this.month - 1],
+      'EEEE': _weekdayNames[this.weekday - 1],
       'MMM': _monthAbbreviations[this.month - 1],
+      'EEE': _weekdayAbbreviations[this.weekday - 1],
+      'yy': this.year.toString().substring(2),
       'MM': _twoDigits(this.month),
-      'M': this.month.toString(),
       'dd': _twoDigits(this.day),
-      'd': this.day.toString(),
       'HH': _twoDigits(this.hour),
       'hh': _twoDigits(this.hour % 12),
       'mm': _twoDigits(this.minute),
       'ss': _twoDigits(this.second),
+      'M': this.month.toString(),
+      'd': this.day.toString(),
       'a': this.hour < 12 ? 'AM' : 'PM',
-      'EEEE': _weekdayNames[this.weekday - 1],
-      'EEE': _weekdayAbbreviations[this.weekday - 1],
     };
 
     String result = pattern;
