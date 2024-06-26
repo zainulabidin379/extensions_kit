@@ -1,3 +1,7 @@
+## 1.1.0
+
+- added missing arguments to tooltip ext
+
 ## 1.0.9
 
 - Fixed date formatting bug

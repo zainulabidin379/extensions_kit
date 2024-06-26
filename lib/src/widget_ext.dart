@@ -168,6 +168,10 @@ extension WidgetExtensions on Widget {
           EdgeInsetsGeometry? padding,
           TextStyle? textStyle,
           Duration? waitDuration,
+          Duration? showDuration,
+          Duration? exitDuration,
+          bool enableTapToDismiss = true,
+          TooltipTriggerMode? triggerMode,
           EdgeInsetsGeometry? margin}) =>
       Tooltip(
         message: message,
@@ -177,7 +181,11 @@ extension WidgetExtensions on Widget {
         preferBelow: preferBelow,
         textStyle: textStyle,
         waitDuration: waitDuration,
+        showDuration: showDuration,
+        exitDuration: exitDuration,
         margin: margin,
+        enableTapToDismiss: enableTapToDismiss,
+        triggerMode: triggerMode,
         child: this,
       );
 
