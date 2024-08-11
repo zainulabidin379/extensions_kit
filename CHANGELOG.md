@@ -1,6 +1,10 @@
+## 1.1.1
+
+- Removed StringExtension conflict with Getx
+
 ## 1.1.0
 
-- added missing arguments to tooltip ext
+- Added missing arguments to tooltip ext
 
 ## 1.0.9
 
@@ -17,16 +21,16 @@
 
 ## 1.0.6
 
-- added number to abbreviated string ext
-- updated Readme
+- Added number to abbreviated string ext
+- Updated Readme
 
 ## 1.0.5
 
-- updated unique id Ext
+- Updated unique id Ext
 
 ## 1.0.4
 
-- Added custom width to snackbars
+- Added custom width to snackbar
 - Updated Readme
 
 ## 1.0.3
@@ -34,7 +38,7 @@
 - Added unique ID generator
 - Updated Readme
 - Added complete documentation link
-- Updated dartdoc comments
+- Updated comments
 
 ## 1.0.2
 
@@ -89,13 +93,13 @@
 
 ## 0.0.4
 
-- Licence Updated
+- License Updated
 - pubspec.yaml Updated
 
 
 ## 0.0.3
 
-- Licence Updated
+- License Updated
 
 
 ## 0.0.2
