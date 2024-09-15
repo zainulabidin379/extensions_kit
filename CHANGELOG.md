@@ -1,3 +1,7 @@
+## 1.1.2
+
+- updated center extension to centerWidget
+
 ## 1.1.1
 
 - Removed StringExtension conflict with Getx

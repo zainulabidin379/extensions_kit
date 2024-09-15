@@ -13,7 +13,7 @@ extension WidgetExtensions on Widget {
       );
 
   /// Centers the [Widget]
-  Widget get center => Center(child: this);
+  Widget get centerWidget => Center(child: this);
 
   /// Aligns the [Widget] to Center LEFT
   Widget get leftAlign => Align(alignment: Alignment.centerLeft, child: this);

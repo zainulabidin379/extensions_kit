@@ -18,7 +18,7 @@ class WidgetExample extends StatelessWidget {
           )
               .withRoundCorners(backgroundColor: Colors.grey)
               .withShadow()
-              .center
+              .centerWidget
               .tooltip('just a tooltip')
               .padOnly(left: 10)
               .padAll(20)
