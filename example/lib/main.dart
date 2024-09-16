@@ -188,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 100,
           )
               .withRoundCorners(backgroundColor: Colors.green, radius: 25)
-              .withShadow()
+              .withShadow(),
         ],
       ).padHrz(20),
     );

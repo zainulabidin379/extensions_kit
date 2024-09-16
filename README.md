@@ -651,6 +651,7 @@ If this package helped you please leave a like and share it with your friends.
 - A lot of extension from [Awesome Extensions](https://pub.dev/packages/awesome_extensions) By [Jayesh Pansheriya](https://github.com/jayeshpansheriya/awesome_extensions)
 - [Gap](https://pub.dev/packages/gap) By [Romain Rastel](https://github.com/letsar/gap)
 - [top_snackbar_flutter](https://pub.dev/packages/top_snackbar_flutter) by [Lanars](https://lanars.com/)
+- [the_validator](https://pub.dev/packages/the_validator) by [Lekan Oladee](https://novugrid.com/)
 
 ## Bugs or Feature Requests
 If you encounter any problems feel free to open an [issue](https://github.com/zainulabidin379/extensions_kit/issues/new?template=bug_report.md). If you feel the library is missing a feature, please raise a [ticket](https://github.com/zainulabidin379/extensions_kit/issues/new?template=feature_request.md). Pull requests are also welcomed.

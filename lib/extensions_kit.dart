@@ -17,3 +17,4 @@ export 'src/text_styles_ext.dart';
 export 'src/urlStrategy/url_strategy_non_web.dart'
     if (dart.library.html) 'src/urlStrategy/url_strategy_web.dart';
 export 'src/widget_ext.dart';
+export 'src/field_validator.dart';

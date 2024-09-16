@@ -1,6 +1,10 @@
+## 1.1.3
+
+- Added FieldValidator
+
 ## 1.1.2
 
-- updated center extension to centerWidget
+- Updated center extension to centerWidget
 
 ## 1.1.1
 
