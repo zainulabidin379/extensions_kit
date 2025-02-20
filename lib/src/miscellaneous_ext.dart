@@ -90,3 +90,22 @@ extension FutureDuration on Duration {
     return Future.delayed(this, computation);
   }
 }
+
+
+/// An extension on [Color] to simplify applying opacity in a version-compatible way.
+extension ColorOpacityExtension on Color {
+  /// Creates a new color with the specified opacity applied.
+  ///
+  /// The [opacity] parameter should be between `0.0` (fully transparent) and `1.0` (fully opaque).
+  Color applyOpacity(double opacity) {
+    final alphaValue = (opacity.clamp(0.0, 1.0) * 255).toDouble(); // Convert to double
+
+    // Check if `withValues` is available (Flutter 3.29+)
+    try {
+      return withValues(alpha: alphaValue);
+    } catch (e) {
+      // Fallback to `withOpacity()` for older versions
+      return withOpacity(opacity);
+    }
+  }
+}

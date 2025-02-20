@@ -1,3 +1,8 @@
+## 1.1.4
+
+- Added applyOpacity
+- Fixed deprecated values
+
 ## 1.1.3
 
 - Added FieldValidator
