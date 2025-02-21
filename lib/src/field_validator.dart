@@ -41,14 +41,17 @@ class Validator {
   }
 
   static bool isEmail(String? email) {
-    if (!isRequired(email)) return false;
+    if (!isRequired(email)) {
+      return false;
+    }
 
     final emailRegex = RegExp(
         r"^((([a-zA-Z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-zA-Z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-zA-Z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-zA-Z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-zA-Z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-zA-Z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-zA-Z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-zA-Z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-zA-Z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$");
-    if (emailRegex.hasMatch(email!))
+    if (emailRegex.hasMatch(email!)) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   /// Todo: Implement reason for failure
@@ -259,7 +262,9 @@ class FieldValidator {
         },
         isSpecialCharsPresent: (present) {
           if (!present)
-            mainError = onSpecialCharsNotPresent != null ? onSpecialCharsNotPresent() : "Password must contain special character";
+            mainError = onSpecialCharsNotPresent != null
+                ? onSpecialCharsNotPresent()
+                : "Password must contain special character";
         },
       )) {
         return null;
@@ -285,7 +290,8 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> number({bool noSymbols = true, String? message}) {
+  static FormFieldValidator<String> number(
+      {bool noSymbols = true, String? message}) {
     return (fieldValue) {
       if (Validator.isNumber(fieldValue, allowSymbols: noSymbols)) {
         return null;
@@ -305,7 +311,8 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> minLength(int minLength, {String? message}) {
+  static FormFieldValidator<String> minLength(int minLength,
+      {String? message}) {
     return (fieldValue) {
       if (Validator.minLength(fieldValue!, minLength)) {
         return null;
@@ -315,7 +322,8 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> maxLength(int maxLength, {String? message}) {
+  static FormFieldValidator<String> maxLength(int maxLength,
+      {String? message}) {
     return (fieldValue) {
       if (Validator.maxLength(fieldValue!, maxLength)) {
         return null;
@@ -325,10 +333,15 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> maxValue({double? maxValue, String? message}) {
+  static FormFieldValidator<String> maxValue(
+      {double? maxValue, String? message}) {
     return (fieldValue) {
-      if (fieldValue!.trim().isEmpty) return message ?? "Field must be lesser than $maxValue";
-      double dFieldValue = double.parse(fieldValue.replaceAll(" ", "").replaceAll(",", "").replaceAll(".", ""));
+      if (fieldValue!.trim().isEmpty)
+        return message ?? "Field must be lesser than $maxValue";
+      double dFieldValue = double.parse(fieldValue
+          .replaceAll(" ", "")
+          .replaceAll(",", "")
+          .replaceAll(".", ""));
       if (Validator.maxValue(dFieldValue, maxValue!)) {
         return null;
       } else {
@@ -337,10 +350,15 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> minValue({double? minValue, String? message}) {
+  static FormFieldValidator<String> minValue(
+      {double? minValue, String? message}) {
     return (fieldValue) {
-      if (fieldValue!.trim().isEmpty) return message ?? "Field must be greater than $maxValue";
-      double dFieldValue = double.parse(fieldValue.replaceAll(" ", "").replaceAll(",", "").replaceAll(".", ""));
+      if (fieldValue!.trim().isEmpty)
+        return message ?? "Field must be greater than $maxValue";
+      double dFieldValue = double.parse(fieldValue
+          .replaceAll(" ", "")
+          .replaceAll(",", "")
+          .replaceAll(".", ""));
       if (Validator.minValue(dFieldValue, minValue!)) {
         return null;
       } else {
@@ -349,7 +367,8 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> regExp(RegExp pattern, [String? errorMessage]) {
+  static FormFieldValidator<String> regExp(RegExp pattern,
+      [String? errorMessage]) {
     return (value) {
       if (value!.isEmpty) return null;
 
@@ -360,7 +379,8 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator multiple(List<FormFieldValidator<String>> validators) {
+  static FormFieldValidator multiple(
+      List<FormFieldValidator<String>> validators) {
     return (fieldValue) {
       for (FormFieldValidator<String> validator in validators) {
         var outcome = validator(fieldValue);
