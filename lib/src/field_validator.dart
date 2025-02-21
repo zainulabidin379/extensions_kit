@@ -80,13 +80,17 @@ class Validator {
     }
 
     if (password.length < minLength) {
-      if (isMinLengthFailed != null) isMinLengthFailed();
+      if (isMinLengthFailed != null) {
+        isMinLengthFailed();
+      }
       return false;
     }
 
     if (maxLength != null) {
       if (password.length > maxLength) {
-        if (isMaxLengthFailed != null) isMaxLengthFailed();
+        if (isMaxLengthFailed != null) {
+          isMaxLengthFailed();
+        }
         return false;
       }
     }
@@ -94,48 +98,67 @@ class Validator {
     if (shouldContainNumber) {
       final numberRegex = RegExp(r"[0-9]+");
       if (!numberRegex.hasMatch(password)) {
-        if (isNumberPresent != null) isNumberPresent(false);
+        if (isNumberPresent != null) {
+          isNumberPresent(false);
+        }
         return false;
-      } else if (isNumberPresent != null) isNumberPresent(true);
+      } else if (isNumberPresent != null) {
+        isNumberPresent(true);
+      }
     }
 
     if (shouldContainCapitalLetter) {
       final capitalRegex = RegExp(r"[A-Z]+");
       if (!capitalRegex.hasMatch(password)) {
-        if (isCapitalLetterPresent != null) isCapitalLetterPresent(false);
+        if (isCapitalLetterPresent != null) {
+          isCapitalLetterPresent(false);
+        }
         return false;
-      } else if (isCapitalLetterPresent != null) isCapitalLetterPresent(true);
+      } else if (isCapitalLetterPresent != null) {
+        isCapitalLetterPresent(true);
+      }
     }
 
     if (shouldContainSmallLetter) {
       final smallLetterRegex = RegExp(r"[a-z]+");
       if (!smallLetterRegex.hasMatch(password)) {
-        if (isSmallLetterPresent != null) isSmallLetterPresent(false);
+        if (isSmallLetterPresent != null) {
+          isSmallLetterPresent(false);
+        }
         return false;
-      } else if (isSmallLetterPresent != null) isSmallLetterPresent(true);
+      } else if (isSmallLetterPresent != null) {
+        isSmallLetterPresent(true);
+      }
     }
 
     if (shouldContainSpecialChars) {
 //      final numberRegex = RegExp(r'(?=.*?[#?!@$%^&*-])');
       final specialRegex = RegExp(r"[\'^£$%!&*()}{@#~?><>,.|=_+¬-]");
       if (!specialRegex.hasMatch(password)) {
-        if (isSpecialCharsPresent != null) isSpecialCharsPresent(false);
+        if (isSpecialCharsPresent != null) {
+          isSpecialCharsPresent(false);
+        }
         return false;
-      } else if (isSpecialCharsPresent != null) isSpecialCharsPresent(true);
+      } else if (isSpecialCharsPresent != null) {
+        isSpecialCharsPresent(true);
+      }
     }
 
     return true;
   }
 
   static bool isEqualTo(dynamic value, dynamic valueToCompare) {
-    if (value == valueToCompare)
+    if (value == valueToCompare) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   static isNumber(String? value, {bool allowSymbols = true}) {
-    if (value == null) return false;
+    if (value == null) {
+      return false;
+    }
 
     var numericRegEx = RegExp(r"^[+-]?([0-9]*[.])?[0-9]+$");
     var numericNoSymbolsRegExp = RegExp(r"^[0-9]+$");
@@ -147,28 +170,38 @@ class Validator {
   }
 
   static bool minLength(String value, int minLength) {
-    if (value.isEmpty) return false;
-    if (value.length >= minLength)
-      return true;
-    else
+    if (value.isEmpty) {
       return false;
+    }
+    if (value.length >= minLength) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   static bool maxLength(String value, int maxLength) {
-    if (value.isEmpty) return false;
-    if (value.length <= maxLength)
-      return true;
-    else
+    if (value.isEmpty) {
       return false;
+    }
+    if (value.length <= maxLength) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   static bool maxValue(double value, double maxValue) {
-    if (value < maxValue) return true;
+    if (value < maxValue) {
+      return true;
+    }
     return false;
   }
 
   static bool minValue(double value, double minValue) {
-    if (value > minValue) return true;
+    if (value > minValue) {
+      return true;
+    }
     return false;
   }
 
@@ -181,7 +214,9 @@ class Validator {
   }
 
   static bool isAlphaNumeric(String? value) {
-    if (value == null) return false;
+    if (value == null) {
+      return false;
+    }
     var alphaNumRegExp = RegExp(r"^[0-9A-Z]+$", caseSensitive: false);
     return alphaNumRegExp.hasMatch(value);
   }
@@ -262,9 +297,7 @@ class FieldValidator {
         },
         isSpecialCharsPresent: (present) {
           if (!present)
-            mainError = onSpecialCharsNotPresent != null
-                ? onSpecialCharsNotPresent()
-                : "Password must contain special character";
+            mainError = onSpecialCharsNotPresent != null ? onSpecialCharsNotPresent() : "Password must contain special character";
         },
       )) {
         return null;
@@ -290,8 +323,7 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> number(
-      {bool noSymbols = true, String? message}) {
+  static FormFieldValidator<String> number({bool noSymbols = true, String? message}) {
     return (fieldValue) {
       if (Validator.isNumber(fieldValue, allowSymbols: noSymbols)) {
         return null;
@@ -311,8 +343,7 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> minLength(int minLength,
-      {String? message}) {
+  static FormFieldValidator<String> minLength(int minLength, {String? message}) {
     return (fieldValue) {
       if (Validator.minLength(fieldValue!, minLength)) {
         return null;
@@ -322,8 +353,7 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> maxLength(int maxLength,
-      {String? message}) {
+  static FormFieldValidator<String> maxLength(int maxLength, {String? message}) {
     return (fieldValue) {
       if (Validator.maxLength(fieldValue!, maxLength)) {
         return null;
@@ -333,15 +363,12 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> maxValue(
-      {double? maxValue, String? message}) {
+  static FormFieldValidator<String> maxValue({double? maxValue, String? message}) {
     return (fieldValue) {
-      if (fieldValue!.trim().isEmpty)
+      if (fieldValue!.trim().isEmpty) {
         return message ?? "Field must be lesser than $maxValue";
-      double dFieldValue = double.parse(fieldValue
-          .replaceAll(" ", "")
-          .replaceAll(",", "")
-          .replaceAll(".", ""));
+      }
+      double dFieldValue = double.parse(fieldValue.replaceAll(" ", "").replaceAll(",", "").replaceAll(".", ""));
       if (Validator.maxValue(dFieldValue, maxValue!)) {
         return null;
       } else {
@@ -350,15 +377,12 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> minValue(
-      {double? minValue, String? message}) {
+  static FormFieldValidator<String> minValue({double? minValue, String? message}) {
     return (fieldValue) {
-      if (fieldValue!.trim().isEmpty)
+      if (fieldValue!.trim().isEmpty) {
         return message ?? "Field must be greater than $maxValue";
-      double dFieldValue = double.parse(fieldValue
-          .replaceAll(" ", "")
-          .replaceAll(",", "")
-          .replaceAll(".", ""));
+      }
+      double dFieldValue = double.parse(fieldValue.replaceAll(" ", "").replaceAll(",", "").replaceAll(".", ""));
       if (Validator.minValue(dFieldValue, minValue!)) {
         return null;
       } else {
@@ -367,24 +391,27 @@ class FieldValidator {
     };
   }
 
-  static FormFieldValidator<String> regExp(RegExp pattern,
-      [String? errorMessage]) {
+  static FormFieldValidator<String> regExp(RegExp pattern, [String? errorMessage]) {
     return (value) {
-      if (value!.isEmpty) return null;
-
-      if (pattern.hasMatch(value))
+      if (value!.isEmpty) {
         return null;
-      else
+      }
+
+      if (pattern.hasMatch(value)) {
+        return null;
+      } else {
         return errorMessage ?? "Do not match the required pattern rules";
+      }
     };
   }
 
-  static FormFieldValidator multiple(
-      List<FormFieldValidator<String>> validators) {
+  static FormFieldValidator multiple(List<FormFieldValidator<String>> validators) {
     return (fieldValue) {
       for (FormFieldValidator<String> validator in validators) {
         var outcome = validator(fieldValue);
-        if (outcome != null) return outcome;
+        if (outcome != null) {
+          return outcome;
+        }
       }
       return null; // all validators were passed
     };
