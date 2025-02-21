@@ -117,7 +117,7 @@ extension ContextExtensions on BuildContext {
         isDefaultAction: true,
         textStyle: TextStyle(color: cancelTitleColor, fontSize: fontSize),
         onPressed: () {
-          context.pop();
+          context.popScreen();
         },
         child: Text(cancelButton),
       );
@@ -134,7 +134,7 @@ extension ContextExtensions on BuildContext {
             if (onDone != null) {
               onDone(index);
             }
-            context.pop();
+            context.popScreen();
           },
           child: Text(buttonTitle),
         );
@@ -182,7 +182,7 @@ extension ContextExtensions on BuildContext {
           cancelButton,
         ),
         onPressed: () {
-          context.pop();
+          context.popScreen();
         },
       );
       arrWidget.add(action);
@@ -205,7 +205,7 @@ extension ContextExtensions on BuildContext {
             if (onDone != null) {
               onDone(index);
             }
-            context.pop();
+            context.popScreen();
           },
         );
         arrWidget.add(action);

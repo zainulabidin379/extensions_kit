@@ -1,3 +1,7 @@
+## 1.1.5
+
+- Fixed conflicting extension names
+
 ## 1.1.4
 
 - Added applyOpacity
