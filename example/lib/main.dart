@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
           /// Shimmer Effect
           ElevatedButton(
               onPressed: () {
-                context.push(ShimmerEffectExample());
+                context.pushScreen(ShimmerEffectExample());
               },
               child: Text('Shimmer Effect')),
 
@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
           /// Text Theme Extensions
           ElevatedButton(
               onPressed: () {
-                context.push(TextExample());
+                context.pushScreen(TextExample());
               },
               child: Text('Text Example')),
 
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
           /// Widget Extensions
           ElevatedButton(
               onPressed: () {
-                context.push(WidgetExample());
+                context.pushScreen(WidgetExample());
               },
               child: Text('Widget Ext')),
 
@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ///Padding Extensions
           ElevatedButton(
               onPressed: () {
-                context.push(PaddingExample());
+                context.pushScreen(PaddingExample());
               },
               child: Text('Padding Example')),
 
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ///Avatar
           ElevatedButton(
               onPressed: () {
-                context.push(AvatarExample());
+                context.pushScreen(AvatarExample());
               },
               child: Text('Avatar')),
 

@@ -9,7 +9,7 @@ extension NavigatorExt on BuildContext {
   void popScreen<T>({result}) => Navigator.pop(this, result);
 
   /// performs a simple [Navigator.push] action with given [route]
-  Future<dynamic> push(
+  Future<dynamic> pushScreen(
     Widget screen, {
     RouteSettings? settings,
     bool maintainState = true,
