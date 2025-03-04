@@ -97,8 +97,7 @@ extension ColorOpacityExtension on Color {
   ///
   /// The [opacity] parameter should be between `0.0` (fully transparent) and `1.0` (fully opaque).
   Color applyOpacity(double opacity) {
-    final alphaValue =
-        (opacity.clamp(0.0, 1.0) * 255).toDouble(); // Convert to double
+    final alphaValue = opacity.clamp(0.0, 1.0); // Convert to double
 
     // Check if `withValues` is available (Flutter 3.29+)
     try {
