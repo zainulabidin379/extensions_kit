@@ -1,3 +1,7 @@
+## 1.1.8
+
+- Updated [MediaQuery.Of(context).size] with [MediaQuery.sizeOf(context)]
+
 ## 1.1.7
 
 - Fixed applyOpacity extension

@@ -75,7 +75,7 @@ class Validator {
     if (password == null) {
       return false;
     }
-    if (password.trim().length == 0) {
+    if (password.trim().isEmpty) {
       return false;
     }
 
@@ -165,8 +165,9 @@ class Validator {
 
     if (allowSymbols) {
       return numericRegEx.hasMatch(value);
-    } else
+    } else {
       return numericNoSymbolsRegExp.hasMatch(value);
+    }
   }
 
   static bool minLength(String value, int minLength) {
